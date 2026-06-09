@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/mastro-linkedin-banner.png" alt="Mastro — il copilota open-source per la partita IVA forfettaria" width="900">
+</p>
+
 # Mastro
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE) ![Status](https://img.shields.io/badge/status-v0.1%20WIP-orange) ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2) ![Tests](https://img.shields.io/badge/tests-25%20passing-brightgreen)
