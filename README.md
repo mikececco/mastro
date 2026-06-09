@@ -4,14 +4,16 @@
 
 # Mastro
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE) ![Status](https://img.shields.io/badge/status-v0.1%20WIP-orange) ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2) [![tests](https://github.com/mikececco/mastro/actions/workflows/ci.yml/badge.svg)](https://github.com/mikececco/mastro/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE) ![Status](https://img.shields.io/badge/status-v0.2%20beta-yellow) ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2) [![tests](https://github.com/mikececco/mastro/actions/workflows/ci.yml/badge.svg)](https://github.com/mikececco/mastro/actions/workflows/ci.yml)
 
 Un copilota **open-source** per chi ha la **partita IVA in regime forfettario**, pensato
 per girare dentro [Claude Code](https://claude.com/claude-code). Mastro risponde a domande
 sul regime, stima le tasse, segnala scadenze ed esclusioni — **citando sempre la fonte**.
 
-> ⚠️ **Stato: work in progress (v0.1).** I file di conoscenza fiscale sono in fase di
-> verifica. Non usare per decisioni definitive finché la v1 non è completa e verificata.
+> ⚠️ **Stato: beta (v0.2).** La conoscenza fiscale del forfettario è stata **verificata contro
+> fonti ufficiali** (Agenzia delle Entrate, Normattiva, INPS Circ. 8/2026 e 14/2026) il 2026-06-09;
+> manca il dogfood end-to-end. L'edizione SRL è ancora uno scheletro. Mastro è un aiuto, non
+> sostituisce il commercialista.
 
 ## Cos'è (e cosa non è)
 Mastro è uno strumento **personale e di comunità**, trasparente e ispezionabile. Non è un

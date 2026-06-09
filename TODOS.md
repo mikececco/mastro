@@ -1,12 +1,16 @@
 # TODOS
 
 ## v1 — da completare prima del "pubblico"
-- [ ] **Verifica fiscale di `forfettario.md` e `esclusioni.md`** dal titolare (forfettario) +
-      controllo contro una fonte ufficiale. Oggi sono `status: DRAFT_DA_VERIFICARE`.
-- [ ] **Confermare aliquote/minimali INPS dell'anno** (gestione separata, artigiani/commercianti,
-      riduzione 35%) con la circolare INPS, poi passarle ai comandi come parametri.
+- [x] **Verifica fiscale di `forfettario.md` e `esclusioni.md`** contro fonti ufficiali
+      (AdE, Normattiva L. 190/2014, prassi). Fatto 2026-06-09 → `status: VERIFICATO`.
+      Resta utile una conferma finale del titolare/commercialista.
+- [x] **Aliquote/minimali INPS 2026** verificate contro INPS Circ. 8/2026 (Gestione Separata)
+      e 14/2026 (Artigiani/Commercianti): minimale 18.808 €, fissi 4.521,36/4.611,64 €,
+      separata 26,07%/24%, scaglione 56.224 €, riduzione 35% a domanda. In `forfettario.md`.
 - [ ] **Dogfood**: eseguire i golden cases (`tests/golden-cases.md`) installando il plugin;
-      far tornare `/tasse` sui propri numeri reali "all'euro".
+      far tornare `/tasse` sui propri numeri reali "all'euro". ← ultimo blocco rimasto.
+- [ ] **Riverificare per il 2027** i valori temporanei: limite 35.000 € (base 30.000 €) e
+      tutte le cifre INPS (annuali).
 
 ## v1.x
 - [ ] **Harness di valutazione automatica dei comandi**: script che esegue ogni comando con
