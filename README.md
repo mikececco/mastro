@@ -1,5 +1,7 @@
 # Mastro
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE) ![Status](https://img.shields.io/badge/status-v0.1%20WIP-orange) ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2) ![Tests](https://img.shields.io/badge/tests-25%20passing-brightgreen)
+
 Un copilota **open-source** per chi ha la **partita IVA in regime forfettario**, pensato
 per girare dentro [Claude Code](https://claude.com/claude-code). Mastro risponde a domande
 sul regime, stima le tasse, segnala scadenze ed esclusioni — **citando sempre la fonte**.
@@ -17,13 +19,35 @@ La differenza con gli strumenti AI esistenti per forfettari: Mastro è **gratuit
 tuo, e cita le fonti**. La conoscenza fiscale vive come Markdown versionato in questa repo —
 puoi leggerla, correggerla, e aprire una PR a ogni Legge di Bilancio.
 
-## Comandi (v1, in arrivo)
+## Comandi (v1)
+_I quattro comandi sono già implementati; in fase di verifica/dogfood (vedi [TODOS.md](./TODOS.md)) prima del rilascio stabile._
+
 | Comando | Cosa fa |
 |---|---|
 | `/chiedi` | Domanda libera sul regime forfettario, risposta con citazione o rifiuto se non c'è fonte |
 | `/tasse` | Stima imposta sostitutiva + INPS + acconti (con echo di coefficiente/aliquota usati) |
 | `/scadenze` | Calendario delle scadenze (acconti, saldo, INPS, dichiarazione) |
 | `/idoneo` | Controllo idoneità: segnala le possibili cause di esclusione (non afferma mai "sei idoneo") |
+
+## Installazione
+Mastro è un plugin per [Claude Code](https://claude.com/claude-code).
+
+1. Aggiungi questa repo come marketplace di plugin:
+   ```
+   /plugin marketplace add mikececco/mastro
+   ```
+2. Installa il plugin:
+   ```
+   /plugin install mastro@mastro-marketplace
+   ```
+3. Prova un comando: `/tasse`, `/chiedi`, `/idoneo`, `/scadenze`.
+
+In alternativa, clona la repo e provala in locale:
+```sh
+git clone https://github.com/mikececco/mastro.git
+cd mastro
+sh tests/calc.test.sh && sh tests/freshness.test.sh   # 25 test, tutti verdi
+```
 
 ## Architettura
 - **Conoscenza** (`knowledge/`): Markdown citato e versionato. `regole.md` = regole trasversali
