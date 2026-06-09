@@ -5,8 +5,12 @@ quindi non hanno test automatici in v1 (l'harness headless è un TODO v1.x). Que
 casi da verificare a mano installando il plugin. Ognuno ha l'esito atteso.
 
 ## /tasse — classificazione degli input (il rischio vero, non l'aritmetica)
-- [ ] **Coefficiente giusto**: "ricavi 50.000, attività di consulenza informatica (ATECO 62)"
-      → coefficiente 78%, e l'output **ripete** coefficiente+aliquota+"incassati" (echo-and-confirm).
+- [ ] **Coefficiente giusto (caso software/IT, errore comune)**: "ricavi 50.000, consulenza
+      informatica / sviluppo software (ATECO 62)" → coefficiente **67%** (Altre attività), **NON 78%**;
+      l'output **ripete** coefficiente+aliquota+"incassati" (echo-and-confirm).
+- [ ] **Codice non elencato → 67%**: un ATECO non presente nelle righe 1–8 → 67%, non un 78% indovinato.
+- [ ] **Acconto primo anno**: "primo anno di attività" → **nessun acconto da storico**
+      (imposta-precedente = 0); spiega il metodo previsionale, non mostra un acconto inventato.
 - [ ] **ATECO sconosciuto**: "attività XYZ non chiara" → **rifiuta** di scegliere un
       coefficiente, indica dove verificare. NON inventa una percentuale.
 - [ ] **5% non spettante**: "primo anno ma è la prosecuzione del mio lavoro da dipendente"

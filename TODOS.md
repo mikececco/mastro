@@ -7,8 +7,12 @@
 - [x] **Aliquote/minimali INPS 2026** verificate contro INPS Circ. 8/2026 (Gestione Separata)
       e 14/2026 (Artigiani/Commercianti): minimale 18.808 €, fissi 4.521,36/4.611,64 €,
       separata 26,07%/24%, scaglione 56.224 €, riduzione 35% a domanda. In `forfettario.md`.
-- [ ] **Dogfood**: eseguire i golden cases (`tests/golden-cases.md`) installando il plugin;
-      far tornare `/tasse` sui propri numeri reali "all'euro". ← ultimo blocco rimasto.
+- [x] **Dogfood (esecuzione comandi)**: 19/19 scenari superati eseguendo i comandi sui file
+      reali (cita-o-rifiuta, never-affirm, flag del tetto, rifiuti onesti). Bug trovato e corretto:
+      ATECO 62 (software/IT) → **67%**, non 78% (errore di classificazione); aggiunto handling
+      acconto primo anno e chiarita la regola disclaimer di `/chiedi`.
+- [ ] **Dogfood (install reale)**: installare il plugin in Claude Code e far tornare `/tasse`
+      sui propri numeri reali "all'euro". ← conferma finale.
 - [ ] **Riverificare per il 2027** i valori temporanei: limite 35.000 € (base 30.000 €) e
       tutte le cifre INPS (annuali).
 

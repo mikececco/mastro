@@ -40,6 +40,23 @@ Il coefficiente NON dipende dai costi sostenuti.
 3. Applica il coefficiente della riga corrispondente.
 4. In caso di più attività con coefficienti diversi, si applica il coefficiente
    dell'attività prevalente (verifica con il commercialista).
+5. **Regola per i codici non elencati:** se il tuo codice ATECO non compare esplicitamente
+   in una riga della tabella sopra, rientra in **"Altre attività economiche" = 67%**.
+   **Non assumere il 78%** se il codice non è tra 64–66, 69–75, 85, 86–88.
+
+## Codici ATECO comuni (esempi, per evitare errori di classificazione)
+| Codice | Attività | Gruppo | Coefficiente |
+|---|---|---|---|
+| **62.0x – 63.x** | **produzione software, consulenza informatica, servizi IT** | Altre attività | **67%** |
+| 70.22 | consulenza gestionale / aziendale | Professionali (riga 8) | 78% |
+| 71.x – 74.x | ingegneria, architettura, design, attività tecniche | Professionali (riga 8) | 78% |
+| 69.x | attività legali e contabili | Professionali (riga 8) | 78% |
+| 47.x | commercio al dettaglio | Commercio | 40% |
+| 41 – 43 | costruzioni / edilizia | Costruzioni (riga 5) | 86% |
+| 96.02 | parrucchieri / estetisti | Altre attività | 67% |
+
+> Nota per chi sviluppa software / fa il consulente IT (ATECO 62): il coefficiente è **67%**,
+> non 78%. È un errore comune. In caso di dubbio sull'attività prevalente, conferma col commercialista.
 
 ## Coefficienti distinti (per il calcolatore)
 40% · 54% · 62% · 67% · 78% · 86%
