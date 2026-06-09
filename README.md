@@ -78,8 +78,13 @@ sh tests/freshness.test.sh
 ```
 
 ## Fonti
-I dati fiscali sono ancorati alla normativa (es. coefficienti di redditività → Allegato 2,
-L. 190/2014). Ogni file in `knowledge/` riporta la fonte e l'anno di validità.
+I dati fiscali sono ancorati alla normativa: ogni file in `knowledge/` riporta la fonte e
+l'anno di validità, e [`knowledge/fonti.md`](./knowledge/fonti.md) mappa ogni regola al testo
+di legge. Per il testo delle norme Mastro si appoggia a
+**[italia-corpus](https://github.com/ahmeabd/italia-corpus)** (di [@ahmeabd](https://github.com/ahmeabd)):
+tutta la legislazione italiana di Normattiva, in Markdown, pubblico dominio, aggiornata ogni
+giorno. Grazie a questo progetto, leggere la norma dietro a una risposta di Mastro è a un clic
+di distanza.
 
 ## Licenza
 MIT. Vedi [LICENSE](./LICENSE).

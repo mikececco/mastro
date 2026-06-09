@@ -8,6 +8,13 @@ Ogni file in `knowledge/` ha un frontmatter con `sources`, `valid_from`, `valid_
 Non si scrive un numero fiscale senza una fonte (legge, circolare, Agenzia delle Entrate).
 Se non hai la fonte, apri una issue invece di indovinare.
 
+**Come verificare contro la norma.** Per il testo di legge usa
+[italia-corpus](https://github.com/ahmeabd/italia-corpus) (tutta la legislazione di Normattiva
+in Markdown) e la mappa in [`knowledge/fonti.md`](./knowledge/fonti.md): collega ogni regola
+all'atto, su Normattiva e su italia-corpus. Per coefficienti, aliquote INPS e prassi, usa
+rispettivamente l'Allegato 2 della L. 190/2014, le circolari INPS dell'anno e le circolari/
+risposte AdE. Se aggiungi o correggi una regola, aggiorna anche `fonti.md`.
+
 ## Aggiornare per un nuovo anno (es. Legge di Bilancio 2027)
 1. Crea `knowledge/2027/` copiando i file dell'anno precedente.
 2. Aggiorna i valori che cambiano (soglie, aliquote, coefficienti se rivisti, INPS).
