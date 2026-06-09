@@ -30,11 +30,12 @@ puoi leggerla, correggerla, e aprire una PR a ogni Legge di Bilancio.
   (cita-o-rifiuta, disclaimer, principio di cassa). `2026/` = dati dell'anno.
 - **Calcolo** (`scripts/calc.sh`): calcolatore deterministico in shell puro, niente costanti
   fiscali hardcoded (le aliquote arrivano dalla conoscenza). Testato in `tests/calc.test.sh`.
-- **Comandi** (`skills/`): i prompt che orchestrano conoscenza + calcolo.
+- **Comandi** (`commands/`): i prompt slash-command che orchestrano conoscenza + calcolo.
 
 ## Test
 ```sh
 sh tests/calc.test.sh
+sh tests/freshness.test.sh
 ```
 
 ## Fonti

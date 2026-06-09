@@ -1,0 +1,14 @@
+{
+  "name": "mastro-marketplace",
+  "owner": {
+    "name": "Mike Cecconello"
+  },
+  "plugins": [
+    {
+      "name": "mastro",
+      "source": "./",
+      "description": "Copilota open-source per la partita IVA in regime forfettario (forfettario advisory copilot). WIP.",
+      "version": "0.1.0"
+    }
+  ]
+}
