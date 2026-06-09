@@ -1,0 +1,9 @@
+{
+  "name": "mastro",
+  "version": "0.1.0",
+  "description": "Copilota open-source per la partita IVA in regime forfettario: risponde a domande, stima le tasse, segnala scadenze ed esclusioni — sempre citando le fonti. Non sostituisce il commercialista.",
+  "author": { "name": "Mike Cecconello" },
+  "license": "MIT",
+  "homepage": "https://github.com/mikececco/mastro",
+  "keywords": ["forfettario", "partita-iva", "italy", "tax", "fisco", "claude-code-plugin"]
+}
