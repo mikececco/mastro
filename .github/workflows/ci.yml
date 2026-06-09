@@ -1,0 +1,17 @@
+name: tests
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shell-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: calc.sh unit tests
+        run: sh tests/calc.test.sh
+      - name: freshness.sh unit tests
+        run: sh tests/freshness.test.sh

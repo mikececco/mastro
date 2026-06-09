@@ -4,7 +4,7 @@
 
 # Mastro
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE) ![Status](https://img.shields.io/badge/status-v0.1%20WIP-orange) ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2) ![Tests](https://img.shields.io/badge/tests-25%20passing-brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE) ![Status](https://img.shields.io/badge/status-v0.1%20WIP-orange) ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2) [![tests](https://github.com/mikececco/mastro/actions/workflows/ci.yml/badge.svg)](https://github.com/mikececco/mastro/actions/workflows/ci.yml)
 
 Un copilota **open-source** per chi ha la **partita IVA in regime forfettario**, pensato
 per girare dentro [Claude Code](https://claude.com/claude-code). Mastro risponde a domande
@@ -32,6 +32,15 @@ _I quattro comandi sono già implementati; in fase di verifica/dogfood (vedi [TO
 | `/tasse` | Stima imposta sostitutiva + INPS + acconti (con echo di coefficiente/aliquota usati) |
 | `/scadenze` | Calendario delle scadenze (acconti, saldo, INPS, dichiarazione) |
 | `/idoneo` | Controllo idoneità: segnala le possibili cause di esclusione (non afferma mai "sei idoneo") |
+
+### Edizione SRL (in costruzione)
+| Comando | Cosa fa |
+|---|---|
+| `/srl` | Domande sull'SRL (IRES, IRAP, IVA, deducibilità). v2: risponde solo da fonte verificata, niente invenzioni |
+| `/confronta` | Forfettario vs SRL: quale conviene e quando ha senso passare (confronto orientativo) |
+
+> Le due edizioni condividono lo stesso core. Forfettario è la v1; la conoscenza fiscale SRL è
+> ancora uno scheletro, quindi `/srl` rifiuta onestamente ciò che non è ancora verificato.
 
 ## Installazione
 Mastro è un plugin per [Claude Code](https://claude.com/claude-code).

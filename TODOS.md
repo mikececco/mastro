@@ -24,6 +24,16 @@
       principio di cassa** (l'XML ha la data di emissione, non l'incasso: va riconciliato
       emesso-vs-pagato).
 
-## v2
-- [ ] **Edizione S.r.l.** sullo stesso core (deducibilità costi, IRES/IRAP, IVA con detrazione).
+## CI / qualità
+- [x] **CI**: GitHub Actions esegue `calc.test.sh` + `freshness.test.sh` a ogni push/PR.
+
+## v2 — Edizione SRL
+- [x] **Scheletro avviato**: comandi `/srl` e `/confronta` + `knowledge/2026/srl.md` (solo i
+      fatti stabili: IRES 24%, IRAP ~3,9%, IVA con detrazione, principio di inerenza). Grazie al
+      cita-o-rifiuta, `/srl` è onesto fin da subito su ciò che non è ancora scritto.
+- [ ] **Contenuto fiscale SRL di dettaglio** (da scrivere e verificare): percentuali di
+      deducibilità (auto, telefonia, rappresentanza, vitto/alloggio), ammortamenti, calcolo
+      IRES/IRAP puntuale, regime dividendi, bilancio.
+- [ ] **Calcolatore SRL** dedicato (es. `scripts/calc-srl.sh`) per dare a `/confronta` un numero
+      SRL deterministico invece di una stima qualitativa.
 - [ ] Generazione/trasmissione fattura elettronica via SDI; sync con piattaforme contabili.
