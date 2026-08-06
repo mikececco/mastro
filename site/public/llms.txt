@@ -1,0 +1,24 @@
+# Mastro
+
+> Copilota fiscale open-source (MIT) per la partita IVA italiana in regime forfettario,
+> con edizione SRL in costruzione. Plugin per Claude Code: stima imposta sostitutiva e
+> INPS con calcolo deterministico, segnala scadenze ed esclusioni, e cita sempre la
+> fonte normativa — o rifiuta di rispondere. Conoscenza fiscale verificata contro fonti
+> ufficiali (Agenzia delle Entrate, Normattiva, INPS Circ. 8/2026 e 14/2026) il 2026-06-09.
+
+Regole fondanti: cita-o-rifiuta; calcolo deterministico (le cifre non escono dal modello);
+dati locali (nessun invio a terzi); non sostituisce il commercialista.
+
+## Conoscenza fiscale (Markdown versionato, con fonti)
+
+- [Regole trasversali](https://github.com/mikececco/mastro/blob/main/knowledge/regole.md)
+- [Regime forfettario 2026](https://github.com/mikececco/mastro/blob/main/knowledge/2026/forfettario.md): requisiti, soglie 85.000/100.000 €, imposta 5%/15%, INPS 2026
+- [Coefficienti ATECO](https://github.com/mikececco/mastro/blob/main/knowledge/2026/coefficienti-ateco.md): Allegato 2, L. 190/2014 (nota: ATECO 62 = 67%)
+- [Cause di esclusione](https://github.com/mikececco/mastro/blob/main/knowledge/2026/esclusioni.md)
+- [SRL (scheletro v2)](https://github.com/mikececco/mastro/blob/main/knowledge/2026/srl.md): IRES 24%, IRAP 3,9%, IVA 22%
+- [Mappa delle fonti](https://github.com/mikececco/mastro/blob/main/knowledge/fonti.md): ogni regola → testo di legge via italia-corpus
+
+## Progetto
+
+- [Repository GitHub](https://github.com/mikececco/mastro)
+- [italia-corpus](https://github.com/ahmeabd/italia-corpus): la legislazione italiana da Normattiva, open, in Markdown

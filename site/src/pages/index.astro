@@ -1,0 +1,250 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Mastro — il copilota fiscale open-source che cita la legge';
+const description =
+  'Stima imposta sostitutiva e INPS del regime forfettario, scadenze, requisiti ed esclusioni — con la fonte normativa citata, o un rifiuto onesto. Open-source (MIT), dentro Claude Code: i tuoi dati restano tuoi.';
+
+const faq = [
+  {
+    q: 'Quanto si paga di tasse nel regime forfettario?',
+    a: "Un'imposta sostitutiva del 15% — o del 5% nei primi 5 anni, se hai i requisiti start-up — su un reddito calcolato come ricavi incassati × coefficiente di redditività del tuo codice ATECO, meno i contributi previdenziali versati nell'anno (L. 190/2014, art. 1 commi 54-89). A questa si aggiungono i contributi INPS. Mastro fa il conto in modo deterministico e ti mostra coefficiente e aliquota usati.",
+  },
+  {
+    q: 'Mastro è gratuito?',
+    a: 'Sì. Mastro è open-source con licenza MIT: è un plugin per Claude Code, si installa in 2 comandi, e la conoscenza fiscale è Markdown pubblico che puoi leggere e correggere su GitHub. I tuoi numeri non lasciano il tuo computer.',
+  },
+  {
+    q: 'Mastro sostituisce il commercialista?',
+    a: 'No, ed è scritto in ogni risposta. Mastro è un aiuto: cita la norma dietro a ogni numero e rifiuta di rispondere quando non ha una fonte verificata. Le decisioni fiscali vanno confermate con un professionista.',
+  },
+  {
+    q: 'Su quali fonti si basa?',
+    a: "Agenzia delle Entrate, Normattiva (L. 190/2014 e collegate, via il progetto open italia-corpus), INPS Circolari n. 8/2026 e n. 14/2026. Ogni file di conoscenza riporta fonte, anno di validità e data di verifica — l'ultima il 9 giugno 2026.",
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Mastro',
+      operatingSystem: 'macOS, Linux, Windows',
+      applicationCategory: 'FinanceApplication',
+      description,
+      inLanguage: 'it',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      license: 'https://opensource.org/license/mit',
+      url: Astro.site?.toString(),
+      sameAs: ['https://github.com/mikececco/mastro'],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <header class="testata">
+    <a class="marchio" href="/">
+      <img src="/favicon-192.png" alt="" width="34" height="34" />
+      Mastro
+    </a>
+    <nav>
+      <a href="#comandi">Comandi</a>
+      <a href="#verificato">Fonti</a>
+      <a href="#installa">Installa</a>
+      <a href="https://github.com/mikececco/mastro">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="eroe">
+      <div>
+        <p class="occhiello appare">Open-source · MIT · dentro Claude Code</p>
+        <h1 class="appare">Il fisco, <em>con la fonte accanto</em>.</h1>
+        <p class="sotto appare">
+          Mastro è il copilota open-source per la partita IVA in regime forfettario
+          (e presto per la SRL): stima imposta e INPS con un calcolo deterministico,
+          segnala scadenze ed esclusioni, e <strong>cita sempre la norma</strong> —
+          o rifiuta onestamente. I tuoi numeri restano sul tuo computer.
+        </p>
+        <div class="azioni appare">
+          <a class="bottone pieno" href="#installa">Installa in 2 comandi</a>
+          <a class="bottone vuoto" href="https://github.com/mikececco/mastro">Leggi il codice →</a>
+        </div>
+      </div>
+
+      <div class="terminale appare" aria-label="Esempio di output del comando /tasse">
+        <span class="prompt">&gt; /tasse</span> — esempio, ATECO 62.01, primi 5 anni<br />
+        <br />
+        <span class="voce">ricavi incassati</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cifra">40.000 €</span><br />
+        <span class="voce">coefficiente 67%</span>&nbsp;&nbsp;&nbsp;→ <span class="cifra">26.800 €</span> reddito<br />
+        <span class="voce">contributi versati</span>&nbsp;&nbsp;− <span class="cifra">6.500 €</span><br />
+        <span class="voce">imposta 5%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="cifra">1.015 €</span><br />
+        <span class="voce">INPS gest. separata 26,07%</span> ≈ <span class="cifra">6.986,76 €</span><br />
+        <span class="fonte">
+          fonti: L. 190/2014 art. 1 c. 54-89 · Allegato 2 (coefficienti) ·
+          INPS Circ. 8/2026 — verificate 2026-06-09
+        </span>
+        <span class="nota">Stima, non consulenza: conferma col commercialista.</span>
+      </div>
+    </div>
+
+    <section>
+      <p class="occhiello-sezione">I tre patti</p>
+      <h2>Regole che non si negoziano</h2>
+      <div class="patti">
+        <div class="patto">
+          <span class="numero">№ 1</span>
+          <h3>Cita o rifiuta</h3>
+          <p>
+            Ogni risposta porta la fonte normativa. Se la fonte non c'è nella conoscenza
+            verificata, Mastro dice «non lo so» invece di inventare.
+          </p>
+        </div>
+        <div class="patto">
+          <span class="numero">№ 2</span>
+          <h3>Calcolo deterministico</h3>
+          <p>
+            I numeri non escono dal modello: escono da un calcolatore in shell puro,
+            testato, con le aliquote lette dalla conoscenza versionata. Stesso input,
+            stesso output, sempre.
+          </p>
+        </div>
+        <div class="patto">
+          <span class="numero">№ 3</span>
+          <h3>Locale e tuo</h3>
+          <p>
+            Niente SaaS, niente account, niente dati inviati altrove. Gira dentro
+            Claude Code sul tuo computer, e il codice è tutto leggibile su GitHub.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="comandi">
+      <p class="occhiello-sezione">Registro dei comandi</p>
+      <h2>Cosa sa fare</h2>
+      <table class="registro">
+        <thead>
+          <tr><th>Comando</th><th>Voce</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>/tasse</td>
+            <td>Stima imposta sostitutiva + INPS + acconti, con echo di coefficiente e aliquota usati (principio di cassa).</td>
+          </tr>
+          <tr>
+            <td>/chiedi</td>
+            <td>Domanda libera sul regime forfettario: risposta con citazione, o rifiuto se non c'è fonte.</td>
+          </tr>
+          <tr>
+            <td>/scadenze</td>
+            <td>Calendario di acconti, saldo, INPS e dichiarazione.</td>
+          </tr>
+          <tr>
+            <td>/idoneo</td>
+            <td>Controllo delle possibili cause di esclusione. Non dice mai «sei idoneo»: ti rimanda al commercialista.</td>
+          </tr>
+          <tr class="presto">
+            <td>/srl<span class="etichetta">in costruzione</span></td>
+            <td>Domande sull'SRL (IRES, IRAP, IVA, deducibilità). Risponde solo da fonte verificata.</td>
+          </tr>
+          <tr class="presto">
+            <td>/confronta<span class="etichetta">in costruzione</span></td>
+            <td>Forfettario vs SRL: quale conviene e quando ha senso passare.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="verificato">
+      <p class="occhiello-sezione">Le fonti</p>
+      <h2>Conoscenza verificata, non generata</h2>
+      <div class="verifica">
+        <div class="timbro">
+          Verificato
+          <small>2026-06-09 · fonti ufficiali</small>
+        </div>
+        <div>
+          <p>
+            La conoscenza fiscale di Mastro è Markdown versionato: ogni file riporta fonte,
+            anno di validità e stato di verifica. L'edizione forfettario è stata controllata
+            riga per riga contro:
+          </p>
+          <ul>
+            <li>Agenzia delle Entrate — schede e istruzioni sul regime forfettario</li>
+            <li>Normattiva — L. 190/2014 e collegate, via <a href="https://github.com/ahmeabd/italia-corpus">italia-corpus</a> (tutta la legislazione italiana, open, in Markdown)</li>
+            <li>INPS — Circolari n. 8/2026 (Gestione Separata) e n. 14/2026 (Artigiani e Commercianti)</li>
+          </ul>
+          <p>
+            Trovi la mappa regola-per-regola in
+            <a href="https://github.com/mikececco/mastro/blob/main/knowledge/fonti.md">knowledge/fonti.md</a>.
+            Se qualcosa è sbagliato o cambia con la prossima Legge di Bilancio, si corregge
+            con una pull request — come dovrebbe essere.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="installa" class="installa">
+      <p class="occhiello-sezione">Installazione</p>
+      <h2>Due comandi, dentro Claude Code</h2>
+      <pre><code>/plugin marketplace add mikececco/mastro</code><button class="copia" data-copia="/plugin marketplace add mikececco/mastro">copia</button></pre>
+      <pre><code>/plugin install mastro@mastro-marketplace</code><button class="copia" data-copia="/plugin install mastro@mastro-marketplace">copia</button></pre>
+      <p>
+        Poi prova <code>/tasse</code>, <code>/chiedi</code>, <code>/scadenze</code> o
+        <code>/idoneo</code>. Serve <a href="https://claude.com/claude-code">Claude Code</a>.
+      </p>
+      <div class="onesta">
+        <strong>Beta, e onesta.</strong> Il forfettario è verificato su fonti ufficiali;
+        l'edizione SRL è ancora uno scheletro e lo dice apertamente. Mastro è un aiuto,
+        <em>non sostituisce il commercialista</em>.
+      </div>
+    </section>
+
+    <section class="faq">
+      <p class="occhiello-sezione">Domande frequenti</p>
+      <h2>In breve</h2>
+      {faq.map(({ q, a }) => (
+        <details>
+          <summary>{q}</summary>
+          <p>{a}</p>
+        </details>
+      ))}
+    </section>
+  </main>
+
+  <footer>
+    <p class="colofone">
+      <strong>Mastro</strong> — dal <em>libro mastro</em>, il registro dove i conti tornano.
+      Open-source (MIT), costruito in Italia. Reso possibile da
+      <a href="https://github.com/ahmeabd/italia-corpus">italia-corpus</a>.
+    </p>
+    <p>
+      <a href="https://github.com/mikececco/mastro">GitHub</a> ·
+      <a href="https://github.com/mikececco/mastro/blob/main/knowledge/fonti.md">Fonti</a> ·
+      <a href="https://github.com/mikececco/mastro/blob/main/LICENSE">Licenza MIT</a>
+    </p>
+  </footer>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('.copia').forEach((b) => {
+      b.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(b.dataset.copia ?? '');
+        b.textContent = 'copiato ✓';
+        setTimeout(() => (b.textContent = 'copia'), 1600);
+      });
+    });
+  </script>
+</Base>

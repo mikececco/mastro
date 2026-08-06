@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Mastro">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0E7C5A"/>
+      <stop offset="1" stop-color="#0A5942"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <!-- M monogram: master + libro mastro -->
+  <path d="M 150 352 L 150 156 L 256 286 L 362 156 L 362 352"
+        fill="none" stroke="#F6F1E7" stroke-width="48"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- ledger baseline / "i conti tornano" accent -->
+  <rect x="150" y="380" width="212" height="20" rx="10" fill="#28B681"/>
+</svg>

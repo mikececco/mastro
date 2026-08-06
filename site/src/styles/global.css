@@ -1,0 +1,405 @@
+/* ============================================================
+   Mastro — "il libro mastro"
+   Carta, inchiostro, righe di registro, un timbro rosso.
+   ============================================================ */
+
+:root {
+  /* palette dal logo */
+  --carta: #f6f1e7;
+  --carta-scura: #efe7d7;
+  --inchiostro: #1d2320;
+  --inchiostro-tenue: #4c554f;
+  --verde: #0e7c5a;
+  --verde-cupo: #0a5942;
+  --verde-vivo: #28b681;
+  --timbro: #b3392b; /* rosso timbro fiscale — solo per il timbro */
+  --riga: rgba(29, 35, 32, 0.12);
+  --riga-forte: rgba(29, 35, 32, 0.35);
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body: 'Newsreader', 'Georgia', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --misura: 68rem;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--carta);
+  color: var(--inchiostro);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  /* righe di registro: quasi invisibili, danno la grana della carta contabile */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(29, 35, 32, 0.035) 31px,
+      rgba(29, 35, 32, 0.035) 32px
+    );
+}
+
+/* margine rosso del registro: doppia riga verticale a sinistra */
+.pagina {
+  position: relative;
+  max-width: var(--misura);
+  margin: 0 auto;
+  padding: 0 2rem 0 3.25rem;
+}
+.pagina::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.6rem;
+  width: 5px;
+  border-left: 1px solid rgba(179, 57, 43, 0.35);
+  border-right: 1px solid rgba(179, 57, 43, 0.35);
+  pointer-events: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6em;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6.5vw, 4.4rem);
+  font-variation-settings: 'opsz' 72, 'SOFT' 40;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-variation-settings: 'opsz' 40;
+}
+
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--verde);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--verde-cupo); }
+
+em { font-style: italic; }
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1;
+}
+
+/* ---------- header ---------- */
+.testata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--riga-forte);
+}
+.marchio {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--inchiostro);
+  text-decoration: none;
+}
+.marchio img { width: 34px; height: 34px; border-radius: 8px; }
+.testata nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+.testata nav a { color: var(--inchiostro-tenue); text-decoration: none; }
+.testata nav a:hover { color: var(--verde); }
+
+/* ---------- hero ---------- */
+.eroe {
+  padding: 5rem 0 3.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+.eroe .occhiello {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--verde);
+  margin-bottom: 1.2rem;
+}
+.eroe h1 em {
+  font-style: italic;
+  font-variation-settings: 'opsz' 72, 'SOFT' 100;
+  color: var(--verde-cupo);
+}
+.eroe .sotto {
+  font-size: 1.2rem;
+  color: var(--inchiostro-tenue);
+  max-width: 34em;
+}
+.azioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.8rem;
+}
+.bottone {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1.5px solid var(--inchiostro);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.bottone:hover { transform: translateY(-2px); box-shadow: 0 3px 0 var(--riga-forte); }
+.bottone.pieno {
+  background: var(--verde);
+  border-color: var(--verde-cupo);
+  color: var(--carta);
+}
+.bottone.pieno:hover { color: var(--carta); box-shadow: 0 3px 0 var(--verde-cupo); }
+.bottone.vuoto { color: var(--inchiostro); }
+
+/* animazione d'ingresso, sobria */
+@media (prefers-reduced-motion: no-preference) {
+  .appare { animation: appare 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .appare:nth-child(2) { animation-delay: 0.08s; }
+  .appare:nth-child(3) { animation-delay: 0.16s; }
+  @keyframes appare {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* ---------- terminale ---------- */
+.terminale {
+  background: linear-gradient(160deg, var(--verde-cupo), #073d2e 80%);
+  color: var(--carta);
+  border-radius: 12px;
+  padding: 1.5rem 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  box-shadow: 0 18px 40px -18px rgba(10, 89, 66, 0.55);
+  overflow-x: auto;
+}
+.terminale .prompt { color: var(--verde-vivo); }
+.terminale .voce { color: rgba(246, 241, 231, 0.65); }
+.terminale .cifra { color: #ffe9a8; }
+.terminale .fonte {
+  color: rgba(246, 241, 231, 0.55);
+  font-style: italic;
+  border-top: 1px dashed rgba(246, 241, 231, 0.25);
+  display: block;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+}
+.terminale .nota { color: rgba(246, 241, 231, 0.45); font-size: 0.8rem; }
+
+/* ---------- sezioni ---------- */
+section { padding: 3.5rem 0; border-top: 1px solid var(--riga); }
+.occhiello-sezione {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--timbro);
+  margin-bottom: 0.8rem;
+}
+
+/* patti: tre voci come righe di registro */
+.patti {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.patto {
+  border-top: 3px solid var(--inchiostro);
+  padding-top: 1.1rem;
+}
+.patto .numero {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--verde);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.patto p { font-size: 1rem; color: var(--inchiostro-tenue); margin: 0; }
+
+/* tabella comandi: registro a colonne */
+.registro {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.6rem;
+  font-size: 1rem;
+}
+.registro th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-align: left;
+  color: var(--inchiostro-tenue);
+  border-bottom: 2px solid var(--inchiostro);
+  padding: 0.5rem 0.8rem 0.5rem 0;
+}
+.registro td {
+  border-bottom: 1px solid var(--riga);
+  padding: 0.8rem 0.8rem 0.8rem 0;
+  vertical-align: top;
+}
+.registro td:first-child {
+  font-family: var(--font-mono);
+  color: var(--verde-cupo);
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+.registro .presto td { color: var(--inchiostro-tenue); }
+.registro .presto td:first-child { color: var(--inchiostro-tenue); }
+.etichetta {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  margin-left: 0.5rem;
+}
+
+/* ---------- timbro VERIFICATO ---------- */
+.verifica {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.timbro {
+  font-family: var(--font-mono);
+  color: var(--timbro);
+  border: 3px double var(--timbro);
+  border-radius: 10px;
+  padding: 0.9rem 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1rem;
+  font-weight: 600;
+  transform: rotate(-4deg);
+  opacity: 0.85;
+  white-space: nowrap;
+  align-self: center;
+  /* leggera irregolarità da inchiostro */
+  mask-image: radial-gradient(circle at 30% 40%, black 92%, transparent 100%);
+}
+.timbro small {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  margin-top: 0.2rem;
+}
+.verifica ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+.verifica li { margin-bottom: 0.4rem; }
+
+/* ---------- installazione ---------- */
+.installa pre {
+  background: var(--carta-scura);
+  border: 1px solid var(--riga-forte);
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+  font-size: 0.92rem;
+  overflow-x: auto;
+  position: relative;
+  margin: 0.8rem 0;
+}
+.copia {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: var(--carta);
+  border: 1px solid var(--riga-forte);
+  border-radius: 5px;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  color: var(--inchiostro-tenue);
+}
+.copia:hover { color: var(--verde); border-color: var(--verde); }
+
+/* ---------- FAQ ---------- */
+.faq details {
+  border-bottom: 1px solid var(--riga);
+  padding: 0.9rem 0;
+}
+.faq summary {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.faq summary::after { content: '+'; font-family: var(--font-mono); color: var(--verde); }
+.faq details[open] summary::after { content: '−'; }
+.faq details p { color: var(--inchiostro-tenue); margin: 0.7rem 0 0; max-width: 46em; }
+
+/* ---------- avviso onestà ---------- */
+.onesta {
+  border: 1.5px solid var(--inchiostro);
+  border-radius: 10px;
+  padding: 1.4rem 1.6rem;
+  font-size: 1.05rem;
+  background: var(--carta-scura);
+  margin-top: 1rem;
+}
+.onesta strong { font-family: var(--font-display); }
+
+/* ---------- footer ---------- */
+footer {
+  border-top: 2px solid var(--inchiostro);
+  margin-top: 4rem;
+  padding: 2.2rem 0 3rem;
+  font-size: 0.95rem;
+  color: var(--inchiostro-tenue);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  justify-content: space-between;
+}
+footer .colofone { max-width: 34em; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .eroe { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; }
+  .patti { grid-template-columns: 1fr; }
+  .verifica { grid-template-columns: 1fr; }
+  .timbro { justify-self: start; }
+  .pagina { padding-left: 2.6rem; }
+  .pagina::before { left: 1.1rem; }
+}
