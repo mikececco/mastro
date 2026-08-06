@@ -10,6 +10,8 @@ Un copilota **open-source** per chi ha la **partita IVA in regime forfettario**,
 per girare dentro [Claude Code](https://claude.com/claude-code). Mastro risponde a domande
 sul regime, stima le tasse, segnala scadenze ed esclusioni — **citando sempre la fonte**.
 
+🌐 **[mastrofisco.it](https://mastrofisco.it)** · 🇬🇧 [English summary below](#-in-english)
+
 > ⚠️ **Stato: beta (v0.2).** La conoscenza fiscale del forfettario è stata **verificata contro
 > fonti ufficiali** (Agenzia delle Entrate, Normattiva, INPS Circ. 8/2026 e 14/2026) il 2026-06-09;
 > manca il dogfood end-to-end. L'edizione SRL è ancora uno scheletro. Mastro è un aiuto, non
@@ -85,6 +87,26 @@ di legge. Per il testo delle norme Mastro si appoggia a
 tutta la legislazione italiana di Normattiva, in Markdown, pubblico dominio, aggiornata ogni
 giorno. Grazie a questo progetto, leggere la norma dietro a una risposta di Mastro è a un clic
 di distanza.
+
+## 🇬🇧 In English
+
+**Mastro is an open-source tax copilot for Italy's flat-tax regime ("regime forfettario"),
+built as a Claude Code plugin.** The interesting part is the architecture, not the country:
+
+- **Cite-or-refuse**: every answer carries its legal citation (statute, INPS/tax-agency
+  circular), or the model refuses instead of hallucinating. The fiscal knowledge lives as
+  versioned, dated Markdown in [`knowledge/`](./knowledge) — inspectable and PR-able.
+- **Deterministic math**: numbers never come from the LLM. A pure-shell calculator
+  ([`scripts/calc.sh`](./scripts/calc.sh)) does the arithmetic, with rates passed in from
+  the knowledge layer. Tested in CI.
+- **Deterministic freshness**: models are bad at date math, so a tiny script
+  ([`scripts/freshness.sh`](./scripts/freshness.sh)) decides whether the fiscal data is
+  stale before any answer is given.
+- **Local-first**: no SaaS, no accounts, your numbers never leave your machine. MIT.
+
+Law text is one click away thanks to
+[italia-corpus](https://github.com/ahmeabd/italia-corpus) — all Italian legislation from
+Normattiva, in Markdown, updated daily. Fork the pattern for your country's tax system.
 
 ## Licenza
 MIT. Vedi [LICENSE](./LICENSE).

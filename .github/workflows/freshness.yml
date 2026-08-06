@@ -1,0 +1,64 @@
+name: freshness
+# La conoscenza fiscale scade (valid_to nel frontmatter). Questo cron settimanale
+# esegue il freshness gate su ogni file di knowledge/ e, se qualcosa è scaduto,
+# apre una issue — il repo si auto-segnala quando arriva la nuova Legge di Bilancio.
+# Nota sicurezza: nessun input non fidato (github.event.*) entra nei blocchi run.
+on:
+  schedule:
+    - cron: '0 7 * * 1' # lunedì 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check valid_to di ogni file di knowledge
+        id: check
+        run: |
+          stale_list=""
+          for f in $(find knowledge -name '*.md' | sort); do
+            vt=$(sed -n 's/^valid_to:[[:space:]]*//p' "$f" | head -1)
+            [ -n "$vt" ] || continue
+            if ! sh scripts/freshness.sh --valid-to "$vt" >/dev/null 2>&1; then
+              stale_list="${stale_list}- \`$f\` (valid_to: $vt)\n"
+            fi
+          done
+          if [ -n "$stale_list" ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            printf "%b" "$stale_list" > /tmp/stale.md
+            printf "%b" "$stale_list"
+          else
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+            echo "Tutta la conoscenza è fresca."
+          fi
+      - name: Apri issue se la conoscenza è scaduta (senza duplicati)
+        if: steps.check.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh label create conoscenza-scaduta --color D93F0B \
+            --description "valid_to superato: serve la verifica del nuovo anno" --force
+          open_count=$(gh issue list --label conoscenza-scaduta --state open --json number --jq 'length')
+          if [ "$open_count" != "0" ]; then
+            echo "Issue già aperta, non ne creo un'altra."
+            exit 0
+          fi
+          {
+            echo "Il freshness gate settimanale ha trovato conoscenza **scaduta**:"
+            echo
+            cat /tmp/stale.md
+            echo
+            echo "Va verificata contro la normativa dell'anno nuovo (Legge di Bilancio, circolari INPS/AdE)."
+            echo "Processo: vedi [CONTRIBUTING.md](https://github.com/$REPO/blob/main/CONTRIBUTING.md)."
+            echo "I comandi stanno già avvisando gli utenti che i dati sono scaduti (freshness.sh)."
+          } > /tmp/body.md
+          gh issue create \
+            --title "Conoscenza fiscale scaduta: serve la verifica del nuovo anno" \
+            --label conoscenza-scaduta \
+            --body-file /tmp/body.md
