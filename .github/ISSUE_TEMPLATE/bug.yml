@@ -1,0 +1,34 @@
+name: "Bug di comando o calcolo"
+description: "Un comando risponde male, il calcolatore sbaglia, o il plugin non funziona."
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: comando
+    attributes:
+      label: Comando
+      options:
+        - /tasse
+        - /chiedi
+        - /scadenze
+        - /idoneo
+        - /srl
+        - /confronta
+        - scripts/calc.sh
+        - installazione / plugin
+        - altro
+    validations:
+      required: true
+  - type: textarea
+    id: cosa-succede
+    attributes:
+      label: Cosa succede
+      description: "Input dato e output ricevuto (togli i dati personali)."
+    validations:
+      required: true
+  - type: textarea
+    id: atteso
+    attributes:
+      label: Cosa ti aspettavi
+    validations:
+      required: true

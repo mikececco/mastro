@@ -1,0 +1,46 @@
+name: "Segnala un errore fiscale"
+description: "Un numero, una soglia o una regola in knowledge/ è sbagliata o superata. La fonte è obbligatoria: è il patto di Mastro."
+title: "[errore fiscale] "
+labels: ["errore-fiscale"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie! La correttezza della conoscenza fiscale è il cuore di Mastro.
+        **Senza fonte normativa la segnalazione non è lavorabile** — se non hai la fonte
+        ma hai un forte sospetto, apri comunque la issue e dillo chiaramente.
+  - type: input
+    id: file
+    attributes:
+      label: File e regola
+      description: "Quale file di knowledge/ e quale regola/numero?"
+      placeholder: "es. knowledge/2026/forfettario.md — aliquota Gestione Separata"
+    validations:
+      required: true
+  - type: textarea
+    id: errore
+    attributes:
+      label: Cosa dice Mastro oggi
+      placeholder: "es. 26,07% per i non pensionati"
+    validations:
+      required: true
+  - type: textarea
+    id: corretto
+    attributes:
+      label: Cosa dovrebbe dire
+      placeholder: "es. 26,23% dal 2027 per effetto di …"
+    validations:
+      required: true
+  - type: textarea
+    id: fonte
+    attributes:
+      label: Fonte normativa
+      description: "Legge/circolare/provvedimento con estremi (e link a Normattiva, AdE, INPS o italia-corpus se possibile)."
+      placeholder: "es. INPS Circolare n. X/2027, par. 2 — https://…"
+    validations:
+      required: true
+  - type: input
+    id: anno
+    attributes:
+      label: Anno fiscale interessato
+      placeholder: "es. 2026"

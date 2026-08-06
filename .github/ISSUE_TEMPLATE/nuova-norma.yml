@@ -1,0 +1,31 @@
+name: "Nuova norma / Legge di Bilancio"
+description: "È uscita una norma che cambia le regole (Legge di Bilancio, circolare INPS, provvedimento AdE): va recepita in knowledge/."
+title: "[nuova norma] "
+labels: ["nuova-norma"]
+body:
+  - type: input
+    id: atto
+    attributes:
+      label: Atto
+      description: "Estremi dell'atto (e link)."
+      placeholder: "es. Legge di Bilancio 2027, art. 1 comma X — https://…"
+    validations:
+      required: true
+  - type: textarea
+    id: cosa-cambia
+    attributes:
+      label: Cosa cambia
+      placeholder: "es. il limite di redditi da lavoro dipendente torna a 30.000 €"
+    validations:
+      required: true
+  - type: textarea
+    id: file-impattati
+    attributes:
+      label: File impattati (se li conosci)
+      placeholder: "es. knowledge/2026/forfettario.md, knowledge/fonti.md"
+  - type: markdown
+    attributes:
+      value: |
+        Il processo di aggiornamento anno-per-anno è descritto in
+        [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md): nuova cartella `knowledge/ANNO/`,
+        frontmatter aggiornato, `status: VERIFICATO` solo dopo verifica sulla fonte.

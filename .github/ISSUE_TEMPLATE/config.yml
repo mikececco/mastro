@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Domande e discussioni
+    url: https://github.com/mikececco/mastro/discussions
+    about: "Per domande d'uso, idee e confronto (non per errori fiscali: quelli meritano una issue con fonte)."
