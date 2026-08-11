@@ -16,7 +16,9 @@ Procedura:
    dell'utente) e `srl/soci.md` (dividendi, compenso, INPS).
 2. Raccogli (chiedi se manca): ricavi attesi, **costi reali** stimati, codice ATECO,
    **regione** (l'IRAP va da 2,68% a 4,97% nel 2026: senza la regione il numero SRL è aria),
-   gestione INPS, e se il socio **lavora** nella società.
+   gestione INPS, se il socio **lavora** nella società, e — per il lato forfettario — se è nei
+   **primi 5 anni con requisiti start-up** (aliquota 5%) o no (15%): senza questo dato non hai
+   `--aliquota` per `calc.sh` e non puoi inventarlo.
 3. **Lato forfettario** — calcolo deterministico:
    `sh ${CLAUDE_PLUGIN_ROOT}/scripts/calc.sh --ricavi <N> --coefficiente <F> --aliquota <0.05|0.15> ...`
 4. **Lato SRL** — calcolo deterministico con
@@ -50,4 +52,7 @@ Procedura:
    deducibilità puntuale dei singoli costi).
 9. **Conclusione**: niente verdetti secchi. Indica in quale direzione spingono i numeri dati,
    quali leve li ribaltano, e **rimanda al commercialista** per il calcolo puntuale.
-10. Cita le fonti. Chiudi con il disclaimer.
+10. **Chiusura** (`regole.md` §4): un confronto con numeri è sempre una "risposta con un
+    numero" → cita le fonti **e** chiudi col disclaimer. (`/confronta` produce quasi sempre
+    numeri; il caso di puro rifiuto — es. dati insufficienti su entrambi i lati — non
+    richiede il disclaimer, solo il rimando a fornire i dati mancanti.)
