@@ -181,6 +181,75 @@ dichiarato precedente, e spiegazione citata di ogni voce.
 Ricerca condotta il 2026-08-06 con verifica via GitHub API (stelle/licenze/ultimo push) e
 fonti web secondarie per prezzi e dinamiche di mercato. Non verificati direttamente:
 prezzi SRL di Consulens/Soluzione Tasse (quote-only; ancora €200–400/mese da comparatori),
-copertura Italia di openaccountants, evidenza diretta da Reddit (fetch bloccato). Le cifre
-fiscali 2026 citate qui provengono da stampa fiscale secondaria: per l'uso nella knowledge
-base fa fede il processo di verifica su fonti primarie già in atto (`knowledge/fonti.md`).
+copertura Italia di openaccountants (risolto nell'aggiornamento 2026-08-11 sotto),
+evidenza diretta da Reddit (fetch bloccato). Le cifre fiscali 2026 citate qui provengono da
+stampa fiscale secondaria: per l'uso nella knowledge base fa fede il processo di verifica su
+fonti primarie già in atto (`knowledge/fonti.md`).
+
+---
+
+## Aggiornamento 2026-08-11 — verifica puntuale contro la profondità dell'edizione SRL
+
+Dopo aver scritto la conoscenza SRL dettagliata (IRAP per tutte le 21 regioni, deducibilità
+puntuale di auto/telefonia/rappresentanza/vitto, ammortamenti, interessi passivi/ROL,
+confronto dividendo-vs-compenso), due ricerche mirate hanno ri-testato la tesi "il titolare
+di SRL non ha alcun prodotto" (§4) a questo livello di granularità, e hanno controllato il
+delta di 5 giorni sul landscape.
+
+### La tesi tiene, ma va formulata con precisione
+
+**Non è vero che "nessuno ha le citazioni"** — sarebbe falso e facilmente smontabile. Tre
+prodotti coprono ciascuno un asse diverso di ciò che fa l'edizione SRL di Mastro, nessuno tutti:
+
+| Prodotto | Ha | Manca |
+|---|---|---|
+| **Sibill** (simulatore tasse SRL, tutte le 21 regioni IRAP) | Ampiezza, gratuito, senza signup | **Zero citazioni normative** |
+| **SoCalSolver** (calcolatore deducibilità auto) | Citazioni reali (art. 164 e 12 fonti), calcolo | Copre **un solo tema su ~9**; progetto di una persona sola, non open, non a tutto tondo SRL |
+| **FiscoAI** | Tier gratuito reale, dichiara citazioni | 5 domande/giorno, **posizionamento a pagamento professional-first**, non open, non locale, granularità non verificabile |
+
+**La formulazione difendibile**: *nessuno strumento gratuito dà al titolare di SRL risposte
+citate e calcolate su IRES/IRAP/deducibilità/ammortamenti/ROL/dividendo-vs-compenso in un
+unico posto.* Non "nessuno ha le citazioni" (falso, vedi sopra).
+
+### openaccountants — la contraddizione della ricerca precedente è risolta, e c'è di più
+
+**15 file Italia esistono** (non zero): it-estimated-tax, it-impatriati, it-income-tax,
+it-inps-contributions, it-irap, italy-bookkeeping, italy-crypto-tax, italy-einvoice,
+italy-financial-statements, italy-formation, italy-payroll, italy-tax-optimization,
+italy-transfer-pricing, italy-vat-return, references.md.
+
+- **`it-regime-forfettario.md` confermato mancante** — `it-income-tax.md` lo cita
+  esplicitamente ("Does NOT cover regime forfettario -- see it-regime-forfettario.md") ma
+  il file non esiste. Il buco che il repo stesso ammette, confermato una seconda volta.
+- **Scoperta nuova, più interessante di un semplice buco**: il loro contenuto SRL cita la
+  **Gestione Separata al 26,07%** — l'aliquota del professionista, non quella
+  dell'amministratore (**33,72%**, verificata da Mastro contro INPS Circ. 8/2026 in
+  `soci.md`). È un **errore fattuale nel loro repo live**, non solo un'assenza — una PR di
+  correzione è più semplice di una PR di nuovo contenuto, e più credibile.
+- Il resto della copertura SRL è sparso (`italy-formation.md`, `italy-tax-optimization.md`,
+  quest'ultimo esplicitamente scoperto per "self-employed") e non arriva alla profondità di
+  Mastro su IRAP regionale, telefonia, rappresentanza, ROL/interessi passivi.
+- **Nota a margine**: ogni file ha `review_status: pending_review` nel frontmatter, mentre il
+  marketing dichiara revisione di commercialisti nominati — divario tra promessa e stato reale
+  del repo. Da tenere presente, non necessariamente da usare pubblicamente.
+
+Non cambia la mossa consigliata nel playbook (`awareness-playbook.md`): PR piccola e
+verificabile. Ora ce ne sono **due candidate**, non una: la correzione dell'aliquota INPS
+(fattuale, immediata) e/o l'autorship di `it-regime-forfettario.md` (più impegnativa, vedi
+il caveat CLA/licenza già segnalato nel playbook).
+
+### Delta di 5 giorni (2026-08-06 → 2026-08-11): nessuna minaccia, due segnali minori
+
+- **italia-corpus fermo da 3,5 settimane** (era 3 al check precedente) — il gap si allarga, non si chiude.
+- **openaccountants** ha corretto una pipeline di indicizzazione rotta (skill indicizzate
+  1.288→1.820, guide verificate 0→256): crescita reale, ma **non tocca la copertura Italia**
+  (ancora 15 file, ancora senza forfettario).
+- **OCA/l10n-italy**: manutenzione di routine (222→223★, 359→356 issue), nessun segnale strategico.
+- **accounted** (Svezia): 81 commit in 5 giorni, tutti Svezia-specifici — nessun segnale di espansione internazionale.
+- **Nuovo entrante**: `aruba-fatture-mcp` (server MCP per fatturazione Aruba, 3★, creato
+  2026-08-03) — plumbing di fatturazione, non logica fiscale. Da tenere d'occhio, non una minaccia.
+- Nessuna novità nel mercato commerciale SRL (Fiscozen, Consulens, TeamSystem, Zucchetti, WK, Qonto/Regate).
+
+**Verdetto**: nessun evento degli ultimi 5 giorni cambia in modo sostanziale la posizione
+competitiva di Mastro. Il posizionamento resta valido: intelligence layer + open rules layer,
+formulato con la precisione sopra.
