@@ -46,15 +46,20 @@
 - [x] **Corretta la regola trasversale cassa/competenza** (`regole.md` §3): il forfettario è
       per cassa, l'SRL per competenza, con l'eccezione dei compensi amministratori (cassa
       allargata al 12 gennaio).
-- [ ] **Chiudere le lacune di `deducibilita.md` §4** (la ricerca si è interrotta): auto
-      (art. 164), telefonia (art. 102 c. 9), rappresentanza (art. 108), vitto/alloggio e
-      tracciabilità, ammortamenti ordinari (artt. 102-103 + DM 31/12/1988), interessi
-      passivi/ROL (art. 96), IMU. Oggi i comandi rifiutano su questi temi: è corretto, ma
-      sono le domande più frequenti.
-- [ ] **Acconti, scadenze e codici tributo F24** di IRES e IRAP: non verificati.
+- [x] **Chiuse le lacune di `deducibilita.md` §4** (2026-08-11): auto (art. 164: 20/70/80/100%),
+      telefonia (art. 102 c. 9: 80%), rappresentanza (art. 108 + DM 19/11/2008: scaglioni
+      1,5/0,6/0,4%, omaggi ≤50€), vitto/alloggio/trasferte (75%, tetti 180,76€/258,23€, **e la
+      tracciabilità obbligatoria dal 2025**: contanti → indeducibilità totale), ammortamenti
+      ordinari (artt. 102-103 + DM 31/12/1988: mobili 12%, EDP 20%, auto 25%; marchi/avviamento
+      1/18 anche ai fini IRES), interessi passivi/ROL (art. 96, 30% del ROL fiscale post-ATAD,
+      riporto ROL limitato a 5 anni). Restano scoperti solo IMU (lato IRES) e acconti/F24.
+- [ ] **Acconti, scadenze e codici tributo F24** di IRES e IRAP: ricerca avviata 2026-08-11,
+      **interrotta per limite di sessione API** (non per assenza di fonti) — da ripetere.
       ⚠️ I default di `calc-srl.sh` (`--acconto-perc 1.00`, `--acconto-primo-perc 0.40`,
       `--acconto-soglia 20.66`) sono **valori di lavoro non verificati**: da chiudere su
       fonte primaria e poi far leggere dalla conoscenza.
+- [ ] **IMU su immobili strumentali**: percentuale di deducibilità ai fini IRES non ancora
+      verificata (nota: ai fini IRAP è indeducibile, quello è già in `irap.md`).
 - [ ] **Adempimenti dichiarativi SRL**: Redditi SC, approvazione e deposito bilancio (XBRL),
       LIPE, dichiarazione IVA annuale, 770, CU, diritto camerale, vidimazione libri.
 - [ ] **Seconda lettura dei file `CITATO`** per promuoverli a `VERIFICATO` (idealmente con un

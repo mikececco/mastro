@@ -10,16 +10,26 @@ Se non hai la fonte, apri una issue invece di indovinare.
 
 **Come verificare contro la norma.** Per il testo di legge usa
 [italia-corpus](https://github.com/ahmeabd/italia-corpus) (tutta la legislazione di Normattiva
-in Markdown) e la mappa in [`knowledge/fonti.md`](./knowledge/fonti.md): collega ogni regola
-all'atto, su Normattiva e su italia-corpus. Per coefficienti, aliquote INPS e prassi, usa
-rispettivamente l'Allegato 2 della L. 190/2014, le circolari INPS dell'anno e le circolari/
-risposte AdE. Se aggiungi o correggi una regola, aggiorna anche `fonti.md`.
+in Markdown) o [dati.normattiva.it](https://dati.normattiva.it) (il portale open data ufficiale,
+API + Akoma Ntoso/XML/JSON, CC BY 4.0) e la mappa in [`knowledge/fonti.md`](./knowledge/fonti.md):
+collega ogni regola all'atto, su Normattiva e su italia-corpus. Per coefficienti, aliquote INPS
+e prassi, usa rispettivamente l'Allegato 2 della L. 190/2014, le circolari INPS dell'anno e le
+circolari/risposte AdE. Se aggiungi o correggi una regola, aggiorna anche `fonti.md`.
+
+> **Nota — non esiste un "italia-corpus" per la prassi.** A differenza delle leggi, circolari
+> INPS, risoluzioni e interpelli AdE non hanno un portale open/API: vivono solo dietro un motore
+> di ricerca HTML, senza export né permalink stabile garantito. Per questo, quando verifichi una
+> regola contro una circolare o una risoluzione, **archivia il testo rilevante** (anche solo il
+> paragrafo citato) nel file di conoscenza stesso — non solo il link. Il link può rompersi o
+> essere riorganizzato; la citazione testuale nel file resta. È una convenzione minima, non un
+> progetto a sé: cresce come sottoprodotto della verifica normale, un file alla volta.
 
 ## Aggiornare per un nuovo anno (es. Legge di Bilancio 2027)
 1. Crea `knowledge/2027/` copiando i file dell'anno precedente.
 2. Aggiorna i valori che cambiano (soglie, aliquote, coefficienti se rivisti, INPS).
 3. Per ogni file aggiornato: aggiorna `valid_from`/`valid_to`, aggiungi/aggiorna `sources`,
-   e imposta `status: VERIFIED` solo dopo aver verificato contro la fonte ufficiale.
+   e imposta lo `status` corretto (`VERIFICATO`, `CITATO` o `DRAFT_SCHELETRO` — vedi
+   `knowledge/regole.md` §7). `VERIFICATO` solo dopo una vera seconda lettura sulla fonte ufficiale.
 4. Imposta `valid_to: 2026-12-31` sui file 2026 (così la `freshness.sh` avvisa quando sono vecchi).
 5. Esegui i test: `sh tests/calc.test.sh && sh tests/freshness.test.sh`.
 6. Apri una PR citando le fonti nel corpo.

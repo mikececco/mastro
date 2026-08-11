@@ -24,7 +24,7 @@ status: CITATO   # vedi regole.md §7. I singoli file di dettaglio dichiarano il
 | `ires.md` | IRES 24%, catena utile → reddito imponibile, perdite | CITATO, acconti **non verificati** |
 | `irap.md` | aliquote (incl. tutte le regioni 2026), base imponibile, deduzioni sul costo del lavoro | CITATO |
 | `soci.md` | dividendi 26%, compenso amministratore, INPS di soci e amministratori | CITATO |
-| `deducibilita.md` | principi, accantonamenti, erogazioni liberali | CITATO, **molte voci mancanti** |
+| `deducibilita.md` | principi, accantonamenti, erogazioni liberali, auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti, interessi passivi | CITATO |
 | `incentivi.md` | iperammortamento 2026, maggiorazione nuove assunzioni | CITATO |
 
 ## Cos'è (in due righe)
@@ -90,10 +90,13 @@ distribuire o capitalizzare. `/confronta` mostra i **poli**, non un numero unico
 
 ## Cosa NON copre ancora l'edizione SRL
 Su questi temi i comandi **rifiutano onestamente** (`regole.md` §1):
-- **Acconti e scadenze**: percentuali, rate, soglie, date, **codici tributo F24** di IRES e IRAP.
+- **Acconti e scadenze**: percentuali, rate, soglie, date, **codici tributo F24** di IRES e IRAP
+  — ricerca interrotta per limite di sessione (2026-08-11), da completare.
 - **Adempimenti dichiarativi**: Redditi SC, approvazione e deposito del bilancio (XBRL), LIPE,
   dichiarazione IVA annuale, 770, CU, diritto camerale, vidimazione libri sociali.
-- **Deducibilità puntuale**: auto, telefonia, rappresentanza, vitto/alloggio, ammortamenti
-  ordinari, interessi passivi/ROL, IMU → vedi `deducibilita.md` §4.
+- **IMU su immobili strumentali**: deducibilità ai fini IRES → `deducibilita.md` §5.
 - **Costituzione e governance**: capitale minimo, SRLS, quote, organo di controllo, revisore.
 - **Operazioni straordinarie** e **liquidazione**.
+
+La **deducibilità puntuale** (auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti,
+interessi passivi/ROL) **è invece coperta** in `deducibilita.md` §4.

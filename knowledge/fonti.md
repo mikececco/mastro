@@ -32,6 +32,12 @@ cui è stata verificata la conoscenza di Mastro, ma come Markdown stabile e vers
 | Erogazioni liberali a enti del Terzo settore (10% del reddito) | D.Lgs. 03/07/2017 n. 117, art. 83 | [urn:nir:...decreto.legislativo:2017-07-03;117](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2017-07-03;117) | collezione `Decreti Legislativi/` — path 🔎 da verificare |
 | Abrogazione retroattiva delle soglie PEX; fine del vincolo "made in EU" per l'iperammortamento | DL 27/03/2026 n. 38 (conv. L. 88/2026), artt. 7 e 11 | [urn:nir:...decreto.legge:2026-03-27;38](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2026-03-27;38) | collezione `DL e leggi di conversione/` (legge di conversione) — path 🔎 da verificare |
 | +2 punti IRAP per il settore energetico (2026-2027) | DL 20/02/2026 n. 21 (conv. L. 49/2026), art. 3 | [urn:nir:...decreto.legge:2026-02-20;21](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2026-02-20;21) | ✅ presente in `DL e leggi di conversione/` (legge di conversione del DL 21/2026) |
+| Deducibilità auto (20/70/80/100%), massimali | TUIR art. 164 | [urn:nir:...dpr:1986-12-22;917](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917) | stesso file del TUIR (riga sopra) — cerca l'articolo nel testo |
+| Spese di rappresentanza — scaglioni | TUIR art. 108 c. 2; DM 19/11/2008 | [urn:nir:...dpr:1986-12-22;917](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917) | TUIR come sopra; il DM 19/11/2008 non è legge primaria — non è nel corpus (italia-corpus copre solo le collezioni legislative, non i decreti attuativi non numerati — vedi sotto) |
+| Tracciabilità di trasferte/rappresentanza (dal 2025) | L. 30/12/2024 n. 207, art. 1 c. 81-83 (range da confermare) | [urn:nir:...legge:2024-12-30;207](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2024-12-30;207) | stesso file della riga "Limite redditi..." sopra |
+| Ammortamenti — coefficienti per gruppo di attività | DM 31/12/1988 (come modif. da DM 28/3/1996) | — | ⚠️ decreto ministeriale non numerato: **fuori dallo scope di italia-corpus per definizione** (vedi nota sotto) |
+| Interessi passivi — limite 30% del ROL fiscale | D.Lgs. 29/11/2018 n. 142 (riscrive TUIR art. 96), attuazione ATAD (UE 2016/1164) | [urn:nir:...decreto.legislativo:2018-11-29;142](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2018-11-29;142) | collezione `Decreti Legislativi/` — path 🔎 da verificare |
+| Indeducibilità dei costi da reato | L. 24/12/1993 n. 537, art. 14 c. 4-bis (come modif. da DL 2/3/2012 n. 16) | [urn:nir:...legge:1993-12-24;537](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1993-12-24;537) | ⚠️ collezione da individuare |
 
 > 🔎 **Nota di trasparenza sulla colonna italia-corpus.** Solo le righe con ✅ sono state
 > verificate aprendo il repository (agosto 2026). Le altre indicano la **collezione probabile**
@@ -56,6 +62,8 @@ esattamente là fuori:
 | Procedura GSE dell'iperammortamento, perizia, comunicazioni | **DM interministeriale 7/5/2026** e decreti direttoriali MIMIT | ❌ in genere no |
 | Base contributiva del socio di SRL su utili non distribuiti | **Circolari INPS** 102/2003 e 84/2021 | ❌ mai |
 | Coefficienti di redditività per ATECO | Allegato 2 alla L. 190/2014 | ⚠️ dipende da come Normattiva espone gli allegati |
+| Coefficienti di ammortamento per gruppo di attività | **DM 31/12/1988** (decreto ministeriale non numerato) | ❌ escluso per definizione — Normattiva stessa dichiara di coprire solo gli atti **numerati** |
+| Scaglioni spese di rappresentanza | **DM 19/11/2008** (decreto attuativo) | ❌ escluso per lo stesso motivo |
 
 **Perché è una buona notizia, non un problema.** Questo è precisamente il confine tra i due
 progetti, e la ragione per cui Mastro non è una copia ridondante del corpus:
