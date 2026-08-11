@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 
 const title = 'Mastro — il copilota fiscale open-source che cita la legge';
 const description =
-  'Stima imposta sostitutiva e INPS del regime forfettario, scadenze, requisiti ed esclusioni — con la fonte normativa citata, o un rifiuto onesto. Open-source (MIT), dentro Claude Code: i tuoi dati restano tuoi.';
+  'Forfettario e SRL: stima imposta sostitutiva, IRES/IRAP e INPS, scadenze e deducibilità — con la fonte normativa citata, o un rifiuto onesto. Open-source (MIT), dentro Claude Code: i tuoi dati restano tuoi.';
 
 const faq = [
   {
@@ -21,6 +21,10 @@ const faq = [
   {
     q: 'Su quali fonti si basa?',
     a: "Agenzia delle Entrate, Normattiva (L. 190/2014 e collegate, via il progetto open italia-corpus), INPS Circolari n. 8/2026 e n. 14/2026. Ogni file di conoscenza riporta fonte, anno di validità e data di verifica — l'ultima il 9 giugno 2026.",
+  },
+  {
+    q: 'Sono un consulente IT o ho un’agenzia: forfettario o SRL?',
+    a: "Dipende dai costi reali e da dove sta la tua IRPEF marginale, non da una regola fissa. /confronta mostra i due poli del prelievo SRL — dividendo (26% secco, zero INPS) o compenso amministratore (deduce dall'IRES ma genera INPS al 33,72%) — con l'aliquota IRAP della tua regione, invece di una media nazionale. Nessun numero unico: la risposta reale sta in mezzo, e va confermata col commercialista.",
   },
 ];
 
@@ -74,9 +78,14 @@ const jsonLd = {
         <h1 class="appare">Il fisco, <em>con la fonte accanto</em>.</h1>
         <p class="sotto appare">
           Mastro è il copilota open-source per la partita IVA in regime forfettario
-          (e presto per la SRL): stima imposta e INPS con un calcolo deterministico,
-          segnala scadenze ed esclusioni, e <strong>cita sempre la norma</strong> —
+          e per la SRL: stima imposta, IRES/IRAP e INPS con un calcolo deterministico,
+          segnala scadenze e deducibilità, e <strong>cita sempre la norma</strong> —
           o rifiuta onestamente. I tuoi numeri restano sul tuo computer.
+        </p>
+        <p class="sotto appare" style="font-size: 1rem; color: var(--inchiostro-tenue);">
+          Hai una <strong>SRL da consulente o da agenzia tech</strong>? È il caso in cui
+          Mastro rende di più: <code>/confronta</code> spiega dividendo vs compenso
+          amministratore con i numeri della tua regione, non un numero medio nazionale.
         </p>
         <div class="azioni appare">
           <a class="bottone pieno" href="#installa">Installa in 2 comandi</a>
@@ -156,16 +165,29 @@ const jsonLd = {
             <td>/idoneo</td>
             <td>Controllo delle possibili cause di esclusione. Non dice mai «sei idoneo»: ti rimanda al commercialista.</td>
           </tr>
-          <tr class="presto">
-            <td>/srl<span class="etichetta">in costruzione</span></td>
-            <td>Domande sull'SRL (IRES, IRAP, IVA, deducibilità). Risponde solo da fonte verificata.</td>
+          <tr>
+            <td>/srl</td>
+            <td>IRES, IRAP (aliquote di tutte le regioni), deducibilità puntuale, dividendo vs compenso amministratore, acconti e F24.</td>
           </tr>
-          <tr class="presto">
-            <td>/confronta<span class="etichetta">in costruzione</span></td>
-            <td>Forfettario vs SRL: quale conviene e quando ha senso passare.</td>
+          <tr>
+            <td>/confronta</td>
+            <td>Forfettario vs SRL: i due poli del prelievo (dividendo o compenso), non un numero unico falsamente preciso.</td>
           </tr>
         </tbody>
       </table>
+
+      <div class="terminale appare" aria-label="Esempio di output del comando /confronta">
+        <span class="prompt">&gt; /confronta</span> — consulente IT, 70.000 € ricavi, Lombardia<br />
+        <br />
+        <span class="voce">forfettario (coeff. 67%)</span>&nbsp; imposta 5% ≈ <span class="cifra">1.777 €</span><br />
+        <span class="voce">SRL — via dividendo</span>&nbsp;&nbsp;&nbsp;&nbsp; IRES 24% + IRAP 3,90% + ritenuta 26% ≈ <span class="cifra">43,76%</span> sull'utile<br />
+        <span class="voce">SRL — via compenso amm.</span> IRPEF 23/33/43% + INPS gest. separata <span class="cifra">33,72%</span><br />
+        <span class="fonte">
+          fonti: art. 77 TUIR · irap.md (Lombardia 3,90%) · art. 27 DPR 600/1973 ·
+          INPS Circ. 8/2026 — nessun numero unico: dipende dalla tua IRPEF marginale
+        </span>
+        <span class="nota">Stima orientativa: il punto di pareggio va calcolato col commercialista.</span>
+      </div>
     </section>
 
     <section id="verificato">
@@ -179,13 +201,17 @@ const jsonLd = {
         <div>
           <p>
             La conoscenza fiscale di Mastro è Markdown versionato: ogni file riporta fonte,
-            anno di validità e stato di verifica. L'edizione forfettario è stata controllata
-            riga per riga contro:
+            anno di validità e stato di verifica (<code>VERIFICATO</code> · <code>CITATO</code> ·
+            <code>DRAFT_SCHELETRO</code>). L'edizione forfettario è <strong>VERIFICATO</strong>,
+            controllata riga per riga; l'edizione SRL è <strong>CITATO</strong> — ogni cifra ha
+            la sua fonte primaria (IRAP di tutte le 21 regioni, deducibilità, INPS di soci e
+            amministratori), ma senza ancora una seconda lettura. Le fonti:
           </p>
           <ul>
-            <li>Agenzia delle Entrate — schede e istruzioni sul regime forfettario</li>
-            <li>Normattiva — L. 190/2014 e collegate, via <a href="https://github.com/ahmeabd/italia-corpus">italia-corpus</a> (tutta la legislazione italiana, open, in Markdown)</li>
+            <li>Agenzia delle Entrate — schede, istruzioni e istruzioni IRAP</li>
+            <li>Normattiva — TUIR, L. 190/2014 e collegate, via <a href="https://github.com/ahmeabd/italia-corpus">italia-corpus</a> (tutta la legislazione italiana, open, in Markdown)</li>
             <li>INPS — Circolari n. 8/2026 (Gestione Separata) e n. 14/2026 (Artigiani e Commercianti)</li>
+            <li>MEF-Dipartimento delle Finanze — banca dati aliquote IRAP regionali</li>
           </ul>
           <p>
             Trovi la mappa regola-per-regola in
@@ -208,8 +234,8 @@ const jsonLd = {
       </p>
       <div class="onesta">
         <strong>Beta, e onesta.</strong> Il forfettario è verificato su fonti ufficiali;
-        l'edizione SRL è ancora uno scheletro e lo dice apertamente. Mastro è un aiuto,
-        <em>non sostituisce il commercialista</em>.
+        l'edizione SRL è documentata e citata, ma senza ancora una seconda lettura — te lo
+        dice a ogni risposta. Mastro è un aiuto, <em>non sostituisce il commercialista</em>.
       </div>
     </section>
 
