@@ -12,6 +12,8 @@ sources:
   - "L. 29 dicembre 2022, n. 197 art. 1 c. 65-69: raddoppio del coefficiente fabbricati per il commercio al dettaglio (2023-2027)"
   - "D.Lgs. 29 novembre 2018, n. 142 (attuazione ATAD, UE 2016/1164): riscrittura dell'art. 96 TUIR (ROL fiscale)"
   - "L. 24 dicembre 1993, n. 537 art. 14 c. 4-bis (come modif. da DL 16/2012): indeducibilità dei costi da reato"
+  - "art. 14 c. 1 D.Lgs. 14 marzo 2011, n. 23; art. 1 c. 772-773 L. 27 dicembre 2019, n. 160: deducibilità IMU al 100% ai fini IRES dal 2022"
+  - "Corte Costituzionale, sentenza n. 262/2020: incostituzionalità della totale indeducibilità IMU-IRES limitata al 2012"
 valid_from: 2026-01-01
 valid_to: 2026-12-31
 status: CITATO   # ogni cifra ha fonte primaria o secondaria qualificata, incrociata; manca la seconda lettura. Vedi regole.md §7.
@@ -22,8 +24,8 @@ status: CITATO   # ogni cifra ha fonte primaria o secondaria qualificata, incroc
 > ⚠️ **`status: CITATO`** — documentato sulle fonti, non ricontrollato: nelle risposte va detto
 > *"verifica col commercialista prima di decidere"*. Copre principi, accantonamenti, erogazioni
 > liberali, e le percentuali puntuali più richieste (auto, telefonia, rappresentanza,
-> vitto/alloggio, ammortamenti, interessi passivi). Resta scoperto solo ciò che elenca il §5:
-> IMU ai fini IRES, e acconti/scadenze/codici tributo F24.
+> vitto/alloggio, ammortamenti, interessi passivi, IMU ai fini IRES). Resta scoperto solo ciò
+> che elenca il §5: costituzione/governance e operazioni straordinarie.
 
 ## 1. Il principio generale
 Un costo è deducibile se rispetta **inerenza**, **competenza** e **certezza/determinabilità**
@@ -241,9 +243,37 @@ imposte versate, con interessi.
 sancisca in generale. ⚠️ L'art. 109 c. 5 (spesso citato come base) **non** è il fondamento
 corretto secondo la Cassazione: non attribuirglielo.
 
+### 4.8 IMU su immobili strumentali — **deducibile al 100% ai fini IRES**
+*(art. 14 c. 1 D.Lgs. 23/2011, come anticipato al 2022 dall'art. 1 c. 772-773 L. 160/2019)*
+
+Dal periodo d'imposta **2022** l'IMU sugli immobili strumentali è **integralmente deducibile**
+ai fini IRES (e IRPEF per imprese individuali/professionisti in contabilità ordinaria — non
+per il forfettario, che non ammette deduzioni analitiche). Vale sia per gli immobili
+**strumentali per natura** (categorie B, C, D, E, A/10) sia **per destinazione** (usati
+direttamente nell'attività), inclusi quelli **concessi in locazione o comodato** — la
+strumentalità per natura si conserva anche senza uso diretto.
+
+> 🚨 **Non confondere con l'IRAP: l'IMU resta indeducibile ai fini IRAP** (`irap.md` §4). Due
+> imposte, due regole opposte sullo stesso costo — vanno sempre distinte nella risposta.
+
+**Come ci si è arrivati (utile per spiegare un dato storico)**: la deducibilità era 0% fino al
+2012 (dichiarato incostituzionale solo per quell'anno da Corte Cost. n. 262/2020), poi salita
+progressivamente — 30% (2013), 20% (2014-2018), 50% (2019), 60% (2020-2021) — fino al 100%
+anticipato al 2022 dalla Legge di Bilancio 2020. **Nessuna modifica dalla Legge di Bilancio
+2026.**
+
+⚠️ Testo primario di art. 14 c. 1 D.Lgs. 23/2011 non letto direttamente su Normattiva in
+questa sessione (fetch bloccato per limiti tecnici); il 100% è confermato da fonti fiscali
+professionali convergenti e dai modelli REDDITI SC dal 2022. La regola su locazione/comodato
+si basa sul principio generale dell'art. 43 c. 2 TUIR applicato per analogia, non su un comma
+specifico letto direttamente: da confermare con una circolare AdE prima di promuovere a
+`VERIFICATO`.
+
 ## 5. ⛔ Cosa NON è ancora scritto (i comandi DEVONO rifiutare)
-- **IMU su immobili strumentali** — percentuale di deducibilità ai fini **IRES** non ancora
-  verificata. (Ai fini **IRAP** è indeducibile — `irap.md` §4 — ma la regola IRES è diversa e manca.)
-- **Acconti, scadenze e codici tributo F24** di IRES e IRAP — ricerca interrotta per limite di
-  sessione (2026-08-11); da completare. Non inventare percentuali, date o codici tributo:
-  "non ho ancora una fonte verificata: chiedi al commercialista."
+- **Codici tributo F24 IRAP** (3800/3812/3813): descrizioni confermate su fonti convergenti,
+  ma non lette sullo strumento ufficiale AdE — vedi `acconti-scadenze.md` §4.
+- **Costituzione e governance**: capitale minimo, SRLS, quote, organo di controllo, revisore.
+- **Operazioni straordinarie e liquidazione**: non ancora ricercate.
+
+Per acconti, scadenze e la maggior parte dei codici tributo F24, vedi ora
+`acconti-scadenze.md` (coperto, `status: CITATO`).

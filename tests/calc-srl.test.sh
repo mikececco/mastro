@@ -90,6 +90,25 @@ field "acconto modo nessuno" acconto_ires_modo "nessuno" \
 field "acconto irap tot" acconto_irap_totale 5850.00 \
   --utile 100000 --ires-aliquota 0.24 --irap-imponibile 150000 --irap-aliquota 0.039
 
+# --- acconto: collasso a rata unica se la prima rata non supera 103 € (art. 17 c.3 DPR 435/2001) ---
+# base 200 -> tot 200, prima rata teorica 80 <= 103 -> tutto a novembre
+field "acconto unica tot"    acconto_ires_totale  200.00 \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 200
+field "acconto unica primo"  acconto_ires_primo   0.00 \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 200
+field "acconto unica secondo" acconto_ires_secondo 200.00 \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 200
+field "acconto unica modo"   acconto_ires_modo "unica (30/11)" \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 200
+# confine esatto: prima rata = 103.00 (base 257.5) -> ancora unica ("non supera" = <=)
+field "acconto confine unica" acconto_ires_modo "unica (30/11)" \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 257.5
+# appena sopra il confine: prima rata 103.20 (base 258) -> due rate
+field "acconto confine split" acconto_ires_modo "due rate (30/06 + 30/11)" \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 258
+field "acconto confine split primo" acconto_ires_primo 103.20 \
+  --utile 100000 --ires-aliquota 0.24 --ires-precedente 258
+
 # --- validazione input ---
 exits "reject missing utile"     2 --ires-aliquota 0.24
 exits "reject missing aliquota"  2 --utile 100000

@@ -53,17 +53,25 @@
       ordinari (artt. 102-103 + DM 31/12/1988: mobili 12%, EDP 20%, auto 25%; marchi/avviamento
       1/18 anche ai fini IRES), interessi passivi/ROL (art. 96, 30% del ROL fiscale post-ATAD,
       riporto ROL limitato a 5 anni). Restano scoperti solo IMU (lato IRES) e acconti/F24.
-- [ ] **Acconti, scadenze e codici tributo F24** di IRES e IRAP: ricerca avviata 2026-08-11,
-      **interrotta per limite di sessione API** (non per assenza di fonti) — da ripetere.
-      ⚠️ I default di `calc-srl.sh` (`--acconto-perc 1.00`, `--acconto-primo-perc 0.40`,
-      `--acconto-soglia 20.66`) sono **valori di lavoro non verificati**: da chiudere su
-      fonte primaria e poi far leggere dalla conoscenza.
-- [ ] **IMU su immobili strumentali**: percentuale di deducibilità ai fini IRES non ancora
-      verificata (nota: ai fini IRAP è indeducibile, quello è già in `irap.md`).
-- [ ] **Adempimenti dichiarativi SRL**: Redditi SC, approvazione e deposito bilancio (XBRL),
-      LIPE, dichiarazione IVA annuale, 770, CU, diritto camerale, vidimazione libri.
+- [x] **Acconti, scadenze e codici tributo F24** (2026-08-11, retry riuscito): nuovo file
+      `knowledge/2026/srl/acconti-scadenze.md`. Confermati i default di `calc-srl.sh` (100%,
+      split 40/60, soglia 20,66€) — **non erano placeholder**. Aggiunta la regola mancante
+      della **rata unica se la prima rata ≤103€** (`--acconto-primo-min`, nuovo parametro,
+      7 nuovi test). Codici F24 IRES (2001/2002/2003) confermati via Ris. AdE 76/E/2004;
+      quelli IRAP (3800/3812/3813) solo su fonti secondarie convergenti — **da confermare
+      sullo strumento ufficiale AdE** prima di promuovere a `VERIFICATO`.
+- [x] **IMU su immobili strumentali** (2026-08-11): **100% deducibile ai fini IRES** dal 2022
+      (art. 14 D.Lgs. 23/2011 + L. 160/2019), indeducibile ai fini IRAP (invariato). In
+      `deducibilita.md` §4.8.
+- [x] **Adempimenti dichiarativi SRL** (2026-08-11): LIPE, IVA annuale, CU/770, diritto
+      camerale, vidimazione libri (**corretta la fonte**: DPR 641/1972 art. 23, non
+      DPR 435/2001), deposito bilancio, e la conferma che **l'esterometro non esiste più dal
+      luglio 2022** (assorbito nel flusso SdI, tipi documento TD17/18/19). In
+      `acconti-scadenze.md`.
 - [ ] **Seconda lettura dei file `CITATO`** per promuoverli a `VERIFICATO` (idealmente con un
-      commercialista). Coda di verifica già annotata dentro ciascun file.
+      commercialista). Coda di verifica già annotata dentro ciascun file — la più urgente:
+      confermare i 3 codici tributo IRAP sullo strumento ufficiale AdE (bloccato per limiti
+      tecnici di fetch, non per assenza di fonte).
 - [ ] Generazione/trasmissione fattura elettronica via SDI; sync con piattaforme contabili.
 
 ## Strategia (vedi `docs/`)

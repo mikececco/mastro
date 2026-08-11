@@ -21,11 +21,12 @@ status: CITATO   # vedi regole.md §7. I singoli file di dettaglio dichiarano il
 | File | Contenuto | Stato |
 |---|---|---|
 | `panoramica.md` | questo file: cos'è una SRL, i poli del confronto col forfettario | CITATO |
-| `ires.md` | IRES 24%, catena utile → reddito imponibile, perdite | CITATO, acconti **non verificati** |
+| `ires.md` | IRES 24%, catena utile → reddito imponibile, perdite | CITATO |
 | `irap.md` | aliquote (incl. tutte le regioni 2026), base imponibile, deduzioni sul costo del lavoro | CITATO |
 | `soci.md` | dividendi 26%, compenso amministratore, INPS di soci e amministratori | CITATO |
-| `deducibilita.md` | principi, accantonamenti, erogazioni liberali, auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti, interessi passivi | CITATO |
+| `deducibilita.md` | principi, accantonamenti, erogazioni liberali, auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti, interessi passivi, IMU | CITATO |
 | `incentivi.md` | iperammortamento 2026, maggiorazione nuove assunzioni | CITATO |
+| `acconti-scadenze.md` | acconti/saldo IRES-IRAP, codici tributo F24, LIPE, IVA annuale, CU/770, diritto camerale, vidimazione libri, bilancio | CITATO, codici F24 IRAP **da confermare** |
 
 ## Cos'è (in due righe)
 La SRL è una **società di capitali**: ha personalità giuridica e **responsabilità limitata**
@@ -90,13 +91,13 @@ distribuire o capitalizzare. `/confronta` mostra i **poli**, non un numero unico
 
 ## Cosa NON copre ancora l'edizione SRL
 Su questi temi i comandi **rifiutano onestamente** (`regole.md` §1):
-- **Acconti e scadenze**: percentuali, rate, soglie, date, **codici tributo F24** di IRES e IRAP
-  — ricerca interrotta per limite di sessione (2026-08-11), da completare.
-- **Adempimenti dichiarativi**: Redditi SC, approvazione e deposito del bilancio (XBRL), LIPE,
-  dichiarazione IVA annuale, 770, CU, diritto camerale, vidimazione libri sociali.
-- **IMU su immobili strumentali**: deducibilità ai fini IRES → `deducibilita.md` §5.
+- **Codici tributo F24 IRAP** (3800/3812/3813): descrizioni confermate ma non lette sullo
+  strumento ufficiale AdE → `acconti-scadenze.md` §4.
 - **Costituzione e governance**: capitale minimo, SRLS, quote, organo di controllo, revisore.
 - **Operazioni straordinarie** e **liquidazione**.
 
-La **deducibilità puntuale** (auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti,
-interessi passivi/ROL) **è invece coperta** in `deducibilita.md` §4.
+Tutto il resto è coperto: **deducibilità puntuale** (auto, telefonia, rappresentanza,
+vitto/trasferte, ammortamenti, interessi passivi/ROL, **IMU ai fini IRES**) in
+`deducibilita.md` §4-4.8; **acconti, scadenze e calendario dichiarativo** (LIPE, IVA annuale,
+CU/770, diritto camerale, vidimazione libri, deposito bilancio, la maggior parte dei codici
+F24) in `acconti-scadenze.md`.

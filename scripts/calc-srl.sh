@@ -57,7 +57,7 @@ perdite="0"; limite_perdite="0.80"
 ires_aliquota=""
 irap_imponibile=""; irap_aliquota="0"
 ires_precedente=""; irap_precedente=""
-acconto_perc="1.00"; acconto_primo_perc="0.40"; acconto_soglia="20.66"
+acconto_perc="1.00"; acconto_primo_perc="0.40"; acconto_soglia="20.66"; acconto_primo_min="103"
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -74,6 +74,7 @@ while [ $# -gt 0 ]; do
     --acconto-perc)         acconto_perc="${2:-}"; shift 2 ;;
     --acconto-primo-perc)   acconto_primo_perc="${2:-}"; shift 2 ;;
     --acconto-soglia)       acconto_soglia="${2:-}"; shift 2 ;;
+    --acconto-primo-min)    acconto_primo_min="${2:-}"; shift 2 ;;
     -h|--help)
       cat <<'EOF'
 usage: calc-srl.sh --utile N --ires-aliquota F
@@ -82,6 +83,7 @@ usage: calc-srl.sh --utile N --ires-aliquota F
                    [--irap-imponibile N --irap-aliquota F]
                    [--ires-precedente N] [--irap-precedente N]
                    [--acconto-perc F] [--acconto-primo-perc F] [--acconto-soglia N]
+                   [--acconto-primo-min N]
 
 --utile          utile ANTE IMPOSTE di bilancio (può essere negativo = perdita)
 --irap-imponibile  valore della produzione netta IRAP (input separato: la base
@@ -102,7 +104,7 @@ for pair in \
   "$perdite:perdite-pregresse" "$limite_perdite:limite-perdite" \
   "$ires_aliquota:ires-aliquota" "$irap_aliquota:irap-aliquota" \
   "$acconto_perc:acconto-perc" "$acconto_primo_perc:acconto-primo-perc" \
-  "$acconto_soglia:acconto-soglia"
+  "$acconto_soglia:acconto-soglia" "$acconto_primo_min:acconto-primo-min"
 do
   val=${pair%:*}; name=${pair#*:}
   is_num "$val" || die "$name non è un numero valido (>=0): '$val'"
@@ -118,14 +120,22 @@ awk \
   -v irap_imp="${irap_imponibile:-}" -v irap_aliq="$irap_aliquota" \
   -v ires_prec="${ires_precedente:-}" -v irap_prec="${irap_precedente:-}" \
   -v acc_perc="$acconto_perc" -v acc_primo_perc="$acconto_primo_perc" \
-  -v acc_soglia="$acconto_soglia" '
-function acconto(base, perc, primo_perc, soglia, prefix) {
+  -v acc_soglia="$acconto_soglia" -v acc_primo_min="$acconto_primo_min" '
+function acconto(base, perc, primo_perc, soglia, primo_min, prefix) {
   tot = 0; primo = 0; secondo = 0; modo = "nessuno"
   if (base > soglia) {
     tot = base * perc
-    primo = tot * primo_perc
-    secondo = tot - primo
-    modo = "due rate"
+    primo_calc = tot * primo_perc
+    if (primo_calc <= primo_min) {
+      # art. 17 c.3 DPR 435/2001: se la prima rata non supera la soglia,
+      # tutto lacconto si versa in unica soluzione alla seconda scadenza
+      secondo = tot
+      modo = "unica (30/11)"
+    } else {
+      primo = primo_calc
+      secondo = tot - primo
+      modo = "due rate (30/06 + 30/11)"
+    }
   }
   printf "%s_totale=%.2f\n", prefix, tot
   printf "%s_primo=%.2f\n", prefix, primo
@@ -163,8 +173,8 @@ BEGIN {
   printf "imposte_totali=%.2f\n", ires + irap
 
   base_acc_ires = (ires_prec == "") ? ires : ires_prec + 0
-  acconto(base_acc_ires, acc_perc, acc_primo_perc, acc_soglia, "acconto_ires")
+  acconto(base_acc_ires, acc_perc, acc_primo_perc, acc_soglia, acc_primo_min, "acconto_ires")
 
   base_acc_irap = (irap_prec == "") ? irap : irap_prec + 0
-  acconto(base_acc_irap, acc_perc, acc_primo_perc, acc_soglia, "acconto_irap")
+  acconto(base_acc_irap, acc_perc, acc_primo_perc, acc_soglia, acc_primo_min, "acconto_irap")
 }'
