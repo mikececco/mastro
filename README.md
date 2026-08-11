@@ -37,14 +37,22 @@ _I quattro comandi sono già implementati; in fase di verifica/dogfood (vedi [TO
 | `/scadenze` | Calendario delle scadenze (acconti, saldo, INPS, dichiarazione) |
 | `/idoneo` | Controllo idoneità: segnala le possibili cause di esclusione (non afferma mai "sei idoneo") |
 
-### Edizione SRL (in costruzione)
+### Edizione SRL (v2, in costruzione ma già utile)
 | Comando | Cosa fa |
 |---|---|
-| `/srl` | Domande sull'SRL (IRES, IRAP, IVA, deducibilità). v2: risponde solo da fonte verificata, niente invenzioni |
-| `/confronta` | Forfettario vs SRL: quale conviene e quando ha senso passare (confronto orientativo) |
+| `/srl` | Domande sull'SRL: IRES, IRAP (con le aliquote di tutte le regioni 2026), dividendi, compenso amministratore, INPS di soci e amministratori, accantonamenti, incentivi |
+| `/confronta` | Forfettario vs SRL: mostra i **due poli** del prelievo (dividendo vs compenso) invece di un numero unico falsamente preciso |
 
-> Le due edizioni condividono lo stesso core. Forfettario è la v1; la conoscenza fiscale SRL è
-> ancora uno scheletro, quindi `/srl` rifiuta onestamente ciò che non è ancora verificato.
+La conoscenza SRL vive in [`knowledge/2026/srl/`](./knowledge/2026/srl) ed è marcata
+**`status: CITATO`**: ogni cifra ha la sua fonte primaria (Normattiva, istruzioni AdE, banca
+dati MEF, circolari INPS), ma **non ha ancora una seconda lettura** — e i comandi lo dicono in
+ogni risposta. Su ciò che non è ancora scritto (acconti, codici tributo F24, deducibilità
+puntuale di auto/telefonia/rappresentanza, ammortamenti ordinari) `/srl` **rifiuta**
+onestamente invece di inventare. Vedi [TODOS.md](./TODOS.md).
+
+> ⚠️ **Attenzione, SRL ≠ forfettario anche nel metodo**: la SRL è tassata per **competenza**,
+> non per cassa. Dalle sole fatture **non** si ricava l'utile (mancano ammortamenti, rimanenze,
+> ratei, TFR): ogni numero SRL derivato dalle fatture è una stima, e Mastro lo dichiara.
 
 ## Installazione
 Mastro è un plugin per [Claude Code](https://claude.com/claude-code).
@@ -68,14 +76,19 @@ sh tests/calc.test.sh && sh tests/freshness.test.sh   # 25 test, tutti verdi
 
 ## Architettura
 - **Conoscenza** (`knowledge/`): Markdown citato e versionato. `regole.md` = regole trasversali
-  (cita-o-rifiuta, disclaimer, principio di cassa). `2026/` = dati dell'anno.
-- **Calcolo** (`scripts/calc.sh`): calcolatore deterministico in shell puro, niente costanti
-  fiscali hardcoded (le aliquote arrivano dalla conoscenza). Testato in `tests/calc.test.sh`.
+  (cita-o-rifiuta, criterio temporale per regime, livelli di verifica, disclaimer).
+  `2026/` = dati dell'anno; `2026/srl/` = edizione SRL.
+- **Calcolo** (`scripts/`): calcolatori deterministici in shell puro, niente costanti fiscali
+  hardcoded (le aliquote arrivano dalla conoscenza come argomenti). `calc.sh` per il
+  forfettario, `calc-srl.sh` per IRES/IRAP/acconti.
 - **Comandi** (`commands/`): i prompt slash-command che orchestrano conoscenza + calcolo.
+- **Freschezza** (`scripts/freshness.sh`): gate deterministico sul `valid_to` dei file — e un
+  cron settimanale che apre una issue quando la conoscenza scade.
 
 ## Test
 ```sh
 sh tests/calc.test.sh
+sh tests/calc-srl.test.sh
 sh tests/freshness.test.sh
 ```
 

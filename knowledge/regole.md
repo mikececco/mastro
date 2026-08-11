@@ -6,9 +6,9 @@ status: STABLE
 
 # Regole trasversali (le segue ogni comando)
 
-Ogni comando di Mastro (`/chiedi`, `/tasse`, `/idoneo`, `/scadenze`) deve rispettare
-queste regole. Sono qui una volta sola, così a ogni Legge di Bilancio si aggiorna un
-file solo.
+Ogni comando di Mastro (`/chiedi`, `/tasse`, `/idoneo`, `/scadenze`, `/srl`, `/confronta`)
+deve rispettare queste regole. Sono qui una volta sola, così a ogni Legge di Bilancio si
+aggiorna un file solo.
 
 ## 1. Cita-o-rifiuta (regola d'oro)
 - Rispondi **solo** usando i file in `knowledge/`. Non usare conoscenza fiscale "a memoria".
@@ -25,11 +25,23 @@ file solo.
 - Se lo script segnala `STATO=scaduto`, **avvisa prima di rispondere**: "⚠️ Questa regola
   potrebbe essere superata: verifica la Legge di Bilancio dell'anno corrente."
 
-## 3. Principio di cassa (sempre)
+## 3. Il criterio temporale dipende dal regime (non confonderli mai)
+
+**Forfettario → principio di CASSA.**
 - I **ricavi** rilevanti sono quelli **incassati** nell'anno, non quelli fatturati.
 - I **contributi** deducibili sono quelli **versati** nell'anno (anche se di competenza
   di un altro anno). Una fattura emessa ma non incassata **non** conta, né per le tasse
   né per il tetto degli 85.000 €.
+
+**SRL → principio di COMPETENZA** *(art. 109 TUIR)*.
+- Costi e ricavi rilevano nell'**esercizio di maturazione**, non di incasso/pagamento:
+  una fattura emessa e non incassata **è** ricavo dell'anno.
+- Conseguenza operativa da dichiarare sempre: **dalle sole fatture non si ricava l'utile
+  di una SRL.** Mancano ammortamenti, rimanenze, ratei e risconti, TFR, costo del
+  personale. Qualsiasi numero SRL derivato dalle fatture è una **stima dichiarata**, e va
+  detto esplicitamente.
+- Eccezioni a competenza da non dimenticare: i **compensi agli amministratori** sono
+  deducibili per **cassa** *(art. 95 c. 5 TUIR)*.
 
 ## 4. Disclaimer (sempre, inline)
 - Ogni risposta con un numero o un giudizio chiude con una riga breve:
@@ -44,3 +56,16 @@ file solo.
 ## 6. Lingua
 - Rispondi in italiano, tono chiaro e diretto, come un bravo commercialista che spiega
   senza gergo inutile.
+
+## 7. Livelli di verifica (il `status` del file conta)
+Il frontmatter di ogni file di conoscenza dichiara quanto è affidabile. Il comando **deve**
+adeguare l'avviso a quel livello:
+
+| `status` | Significato | Come rispondere |
+|---|---|---|
+| `VERIFICATO` | Verificato contro fonti primarie e ricontrollato | Rispondi normalmente + disclaimer standard |
+| `CITATO` | Ogni cifra ha la sua fonte primaria, **ma nessuna seconda lettura** | Rispondi, cita, e aggiungi: *"⚠️ Questa parte è documentata con le fonti ma non ancora ricontrollata: verifica col commercialista prima di decidere."* |
+| `DRAFT_SCHELETRO` | Incompleto per definizione | Rispondi solo su ciò che c'è; su tutto il resto rifiuta (regola 1) |
+
+Non promuovere mai un file a `VERIFICATO` senza una verifica reale sulla fonte ufficiale:
+è la differenza tra Mastro e un chatbot che indovina.

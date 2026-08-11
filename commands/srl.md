@@ -1,5 +1,5 @@
 ---
-description: Domande sulla SRL (IRES, IRAP, IVA, deducibilità). v2 in costruzione — risponde solo da fonte verificata.
+description: Domande sulla SRL (IRES, IRAP, IVA, deducibilità, dividendi, INPS di soci e amministratori). Risponde solo da fonte citata.
 argument-hint: "[la tua domanda sulla SRL]"
 ---
 Segui le regole in `${CLAUDE_PLUGIN_ROOT}/knowledge/regole.md`.
@@ -7,12 +7,32 @@ Segui le regole in `${CLAUDE_PLUGIN_ROOT}/knowledge/regole.md`.
 Domanda dell'utente: $ARGUMENTS
 
 Procedura:
-1. Leggi `${CLAUDE_PLUGIN_ROOT}/knowledge/2026/srl.md`.
-2. Rispondi **solo** con quanto presente nel file. Cita fonte + anno.
-3. **Importante:** `srl.md` è ancora uno scheletro (v2). Se la domanda riguarda dettagli non
-   ancora scritti (percentuali di deducibilità di auto/telefonia/rappresentanza, ammortamenti,
-   bilancio, calcolo IRES/IRAP puntuale), **dillo chiaramente e fermati**:
-   "L'edizione SRL è in costruzione: non ho ancora una fonte verificata su questo. Chiedi al
-   commercialista." Non inventare numeri SRL.
-4. Per un confronto con il forfettario usa invece `/confronta`.
-5. Chiudi con il disclaimer.
+1. Leggi `${CLAUDE_PLUGIN_ROOT}/knowledge/2026/srl/panoramica.md` (indice ed elenco di ciò che
+   l'edizione **non** copre), poi **solo il file pertinente** alla domanda:
+   - `ires.md` → IRES, aliquota, utile → reddito imponibile, perdite
+   - `irap.md` → IRAP: aliquote regionali, base imponibile, deduzioni sul costo del lavoro
+   - `soci.md` → dividendi, compenso amministratore, IRPEF, INPS di soci e amministratori
+   - `deducibilita.md` → principi, accantonamenti, erogazioni liberali
+   - `incentivi.md` → iperammortamento 2026, maggiorazione nuove assunzioni
+2. Controlla la freschezza in modo deterministico:
+   `sh ${CLAUDE_PLUGIN_ROOT}/scripts/freshness.sh --valid-to <valid_to del file letto>`
+3. Rispondi **solo** con quanto presente nei file, citando file + riferimento normativo + anno.
+4. **Livello di verifica (`regole.md` §7).** I file SRL sono `status: CITATO`: rispondi, cita,
+   e aggiungi l'avviso *"⚠️ Questa parte è documentata con le fonti ma non ancora
+   ricontrollata: verifica col commercialista prima di decidere."*
+5. **Rifiuta onestamente** su ciò che non è scritto — in particolare: **acconti, scadenze e
+   codici tributo F24**, deducibilità puntuale di **auto/telefonia/rappresentanza/vitto e
+   alloggio**, **ammortamenti ordinari**, **interessi passivi/ROL**, IMU, costituzione e
+   governance, operazioni straordinarie. Formula:
+   "L'edizione SRL non copre ancora questo: non ho una fonte verificata. Chiedi al
+   commercialista." **Non inventare percentuali né codici tributo.**
+6. **Competenza, non cassa** (`regole.md` §3). Se l'utente ragiona su fatture o incassi,
+   chiarisci che l'SRL è tassata per competenza e che dalle sole fatture non si ricava l'utile
+   (mancano ammortamenti, rimanenze, ratei, TFR, costo del personale). Ricorda l'eccezione:
+   compensi amministratori deducibili per **cassa**, allargata al 12 gennaio.
+7. Se serve un calcolo IRES/IRAP deterministico, usa
+   `sh ${CLAUDE_PLUGIN_ROOT}/scripts/calc-srl.sh` passando le aliquote lette dalla conoscenza
+   (l'IRAP richiede `--irap-imponibile`: **non derivarlo dall'utile**, le basi sono diverse).
+   Dichiara sempre che è una stima.
+8. Per il confronto col forfettario usa invece `/confronta`.
+9. Chiudi con il disclaimer.
