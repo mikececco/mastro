@@ -11,8 +11,24 @@
       reali (cita-o-rifiuta, never-affirm, flag del tetto, rifiuti onesti). Bug trovato e corretto:
       ATECO 62 (software/IT) → **67%**, non 78% (errore di classificazione); aggiunto handling
       acconto primo anno e chiarita la regola disclaimer di `/chiedi`.
+- [x] **Dogfood (esecuzione comandi) — edizione SRL** (2026-08-11): 8+ scenari su `/srl` e
+      `/confronta` (mai testati end-to-end prima), più re-verifica di `/tasse`/`/chiedi`/`/idoneo`
+      dopo le modifiche a `regole.md`. **Tre bug trovati e corretti**:
+      1. `srl.md` istruiva a *rifiutare* i codici tributo F24 IRAP come se fossero assenti —
+         sono invece in `acconti-scadenze.md` a `CITATO`. Corretto: risponde col codice + un
+         caveat rafforzato specifico, distinto dallo standard CITATO.
+      2. `srl.md` e `confronta.md` chiudevano **sempre** col disclaimer, anche dopo un puro
+         rifiuto — incoerente con `regole.md` §4 (disclaimer solo se c'è un numero/giudizio) e
+         con `chiedi.md`, che quella distinzione ce l'aveva già. Allineati tutti e tre.
+      3. **Il sito stesso** (`mastrofisco.it`) mostrava un output di `/confronta` (1.777 €) mai
+         passato da `calc.sh` — non corrispondeva a nessuna combinazione pulita di input. Rifatto
+         con `calc.sh` reale (contributi 10.000 € esplicito, imposta 1.845 €), verificabile come
+         l'esempio hero. Ironia notata: il sito ha violato la regola che il progetto esiste per
+         far rispettare.
+      4. Trovato ma non bug: `confronta.md` non chiedeva esplicitamente "primi 5 anni?" pur
+         richiedendo `--aliquota` a `calc.sh` — aggiunto alla raccolta dati.
 - [ ] **Dogfood (install reale)**: installare il plugin in Claude Code e far tornare `/tasse`
-      sui propri numeri reali "all'euro". ← conferma finale.
+      sui propri numeri reali "all'euro". ← conferma finale, richiede l'utente stesso.
 - [ ] **Riverificare per il 2027** i valori temporanei: limite 35.000 € (base 30.000 €) e
       tutte le cifre INPS (annuali).
 
