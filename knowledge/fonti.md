@@ -82,6 +82,18 @@ Coefficienti, contributi INPS e prassi non sono "legge" in senso stretto e hanno
 - **Base imponibile e deduzioni IRAP** → istruzioni AdE alla dichiarazione IRAP dell'anno
   (modello IRAP 2026 approvato con provv. 27/02/2026 n. 71997).
 - **Iperammortamento** → DM interministeriale 7 maggio 2026 e decreti direttoriali MIMIT.
+- **Codici tributo F24** → strumento ufficiale di ricerca
+  [agenziaentrate.gov.it/portale/web/guest/ricerca-codici-tributo](https://www.agenziaentrate.gov.it/portale/web/guest/ricerca-codici-tributo)
+  (i codici IRES 2001/2002/2003 sono inoltre documentati dalla Risoluzione AdE n. 76/E del
+  27/05/2004).
+- **Acconti IRES/IRAP (meccanica)** → art. 1 c. 301 L. 311/2004 (100%); art. 17 c. 3 DPR
+  435/2001 (split 40/60, rata unica se prima rata ≤103€); art. 30 c. 3 D.Lgs. 446/1997
+  (l'IRAP segue le stesse regole dell'IRES).
+- **Deducibilità IMU ai fini IRES** → art. 14 c. 1 D.Lgs. 23/2011 + art. 1 c. 772-773
+  L. 160/2019 (100% dal 2022); Corte Cost. n. 262/2020 per il contesto storico 2012.
+- **Calendario dichiarativo SRL** → art. 21-bis D.L. 78/2010 (LIPE); DPR 322/1998
+  (Redditi SC, IVA annuale, CU); D.Lgs. 1/2024 (esonero 770 fino a 5 dipendenti); Tariffa
+  DPR 641/1972 art. 23 (vidimazione libri sociali); artt. 2364/2435/2478-bis c.c. (bilancio).
 
 > ⚠️ **Trappola nota su Normattiva (art. 16 D.Lgs. 446/1997).** Il corpo dell'articolo mostra
 > **3,50%**: è il testo sostituito dal D.L. 66/2014, il cui comma è stato **abrogato** dalla

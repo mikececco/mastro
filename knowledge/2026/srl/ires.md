@@ -7,14 +7,14 @@ sources:
   - "L. 30 dicembre 2025, n. 199 (Legge di Bilancio 2026): nessuna proroga dell'IRES premiale"
 valid_from: 2026-01-01
 valid_to: 2026-12-31
-status: CITATO   # aliquota e stato dell'IRES premiale verificati; la meccanica di dettaglio di artt. 83-84 e gli acconti NON sono verificati. Vedi §4.
+status: CITATO   # aliquota, IRES premiale e meccanica di base documentati. Vedi §4 per ciò che resta scoperto (variazioni puntuali, agevolazioni).
 ---
 
 # IRES per la SRL (2026)
 
-> ⚠️ **`status: CITATO`** e **parzialmente incompleto**: l'aliquota e lo stato dell'IRES
-> premiale sono documentati; il dettaglio di variazioni e perdite è sintetico e gli **acconti
-> non sono verificati** (§4). Su ciò che manca i comandi devono rifiutare.
+> ⚠️ **`status: CITATO`** — aliquota, IRES premiale e catena di calcolo documentate. Gli
+> **acconti e i codici tributo F24 sono ora coperti in `acconti-scadenze.md`** (§4 sotto
+> elenca solo ciò che resta scoperto). Su ciò che manca i comandi devono rifiutare.
 
 ## 1. Aliquota: 24%
 **IRES 24%** sul reddito d'impresa *(art. 77 TUIR; misura in vigore dal periodo d'imposta
@@ -62,14 +62,17 @@ In `calc-srl.sh`: `--perdite-pregresse` e `--limite-perdite` (default `0.80`, da
 > antielusivi al riporto (es. cambio di controllo + mutamento di attività) **non sono ancora
 > scritti**: su questi i comandi rifiutano.
 
-## 4. Cosa NON è ancora verificato (i comandi devono rifiutare)
-Questi punti erano in lavorazione quando la ricerca si è interrotta. **Non inventarli.**
-- **Acconti IRES**: percentuale totale, split delle rate, soglia minima, scadenze.
-  ⚠️ `calc-srl.sh` espone `--acconto-perc` (default 1.00), `--acconto-primo-perc` (0.40) e
-  `--acconto-soglia` (20.66) come **parametri**: sono valori di lavoro **non verificati**,
-  non citarli come fonte.
-- **Codici tributo F24** per saldo e acconti IRES.
-- **Scadenze dichiarative** (Redditi SC, approvazione e deposito del bilancio).
-- **Elenco puntuale delle variazioni** in aumento/diminuzione più comuni.
+## 4. Acconti, scadenze e F24 → vedi `acconti-scadenze.md`
+I default di `calc-srl.sh` (`--acconto-perc 1.00`, `--acconto-primo-perc 0.40`,
+`--acconto-soglia 20.66`, `--acconto-primo-min 103`) **sono confermati**, non più
+placeholder: 100% dell'imposta precedente, split 40/60, soglia 20,66 €, rata unica se la
+prima rata non supera 103 € *(art. 1 c. 301 L. 311/2004; art. 17 c. 3 DPR 435/2001)*. Dettagli,
+codici tributo F24 e calendario dichiarativo in `acconti-scadenze.md`.
+
+## 5. Cosa NON è ancora verificato (i comandi devono rifiutare)
+- **Elenco puntuale delle variazioni** in aumento/diminuzione più comuni (oltre a quelle già
+  in `deducibilita.md`).
 - **Agevolazioni**: stato di ACE, patent box, ZES per il 2026 (per il super-deduzione nuove
   assunzioni e l'iperammortamento vedi invece `incentivi.md`, che è documentato).
+- **Condizioni di utilizzo integrale delle perdite** dei primi tre esercizi e limiti
+  antielusivi al riporto (§3).

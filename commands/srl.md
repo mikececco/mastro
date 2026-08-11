@@ -12,21 +12,22 @@ Procedura:
    - `ires.md` → IRES, aliquota, utile → reddito imponibile, perdite
    - `irap.md` → IRAP: aliquote regionali, base imponibile, deduzioni sul costo del lavoro
    - `soci.md` → dividendi, compenso amministratore, IRPEF, INPS di soci e amministratori
-   - `deducibilita.md` → principi, accantonamenti, erogazioni liberali
+   - `deducibilita.md` → principi, accantonamenti, erogazioni liberali, deducibilità puntuale
+     (auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti, interessi passivi, IMU)
    - `incentivi.md` → iperammortamento 2026, maggiorazione nuove assunzioni
+   - `acconti-scadenze.md` → acconti/saldo IRES-IRAP, codici tributo F24, LIPE, IVA annuale,
+     CU/770, diritto camerale, vidimazione libri, deposito bilancio
 2. Controlla la freschezza in modo deterministico:
    `sh ${CLAUDE_PLUGIN_ROOT}/scripts/freshness.sh --valid-to <valid_to del file letto>`
 3. Rispondi **solo** con quanto presente nei file, citando file + riferimento normativo + anno.
 4. **Livello di verifica (`regole.md` §7).** I file SRL sono `status: CITATO`: rispondi, cita,
    e aggiungi l'avviso *"⚠️ Questa parte è documentata con le fonti ma non ancora
    ricontrollata: verifica col commercialista prima di decidere."*
-5. **Rifiuta onestamente** su ciò che non è scritto — in particolare: **acconti, scadenze e
-   codici tributo F24** di IRES/IRAP, **IMU** ai fini IRES, costituzione e governance,
-   operazioni straordinarie (vedi `panoramica.md` per l'elenco aggiornato). Formula:
-   "L'edizione SRL non copre ancora questo: non ho una fonte verificata. Chiedi al
+5. **Rifiuta onestamente** su ciò che non è scritto — in particolare: **codici tributo F24
+   IRAP** (3800/3812/3813, non ancora letti sullo strumento ufficiale AdE), costituzione e
+   governance, operazioni straordinarie (vedi `panoramica.md` per l'elenco aggiornato).
+   Formula: "L'edizione SRL non copre ancora questo: non ho una fonte verificata. Chiedi al
    commercialista." **Non inventare percentuali né codici tributo.**
-   (Auto, telefonia, rappresentanza, vitto/trasferte, ammortamenti e interessi passivi **sono**
-   coperti in `deducibilita.md` §4: rispondi da lì, citando.)
 6. **Competenza, non cassa** (`regole.md` §3). Se l'utente ragiona su fatture o incassi,
    chiarisci che l'SRL è tassata per competenza e che dalle sole fatture non si ricava l'utile
    (mancano ammortamenti, rimanenze, ratei, TFR, costo del personale). Ricorda l'eccezione:
