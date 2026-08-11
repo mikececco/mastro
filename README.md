@@ -14,14 +14,22 @@ sul regime, stima le tasse, segnala scadenze ed esclusioni — **citando sempre 
 
 > ⚠️ **Stato: beta (v0.2).** La conoscenza fiscale del forfettario è stata **verificata contro
 > fonti ufficiali** (Agenzia delle Entrate, Normattiva, INPS Circ. 8/2026 e 14/2026) il 2026-06-09;
-> manca il dogfood end-to-end. L'edizione SRL è ancora uno scheletro. Mastro è un aiuto, non
-> sostituisce il commercialista.
+> manca il dogfood end-to-end. L'edizione SRL ha conoscenza citata su tutte le imposte
+> principali (`status: CITATO` — fonte primaria per ogni cifra, seconda lettura non ancora
+> fatta). Mastro è un aiuto, non sostituisce il commercialista.
 
 ## Cos'è (e cosa non è)
 Mastro è uno strumento **personale e di comunità**, trasparente e ispezionabile. Non è un
-SaaS, non invia i tuoi dati da nessuna parte, non emette fatture e **non sostituisce il
-commercialista**: ogni risposta che produce un numero o un giudizio di idoneità lo dice
-esplicitamente.
+SaaS, non invia i tuoi dati da nessuna parte, non emette fatture, non firma né trasmette
+nulla per conto tuo, e **non sostituisce il commercialista**: ogni risposta che produce un
+numero o un giudizio di idoneità lo dice esplicitamente, e non costituisce consulenza fiscale
+personalizzata.
+
+Non è solo un modo di dire: è il motivo per cui Mastro sta fuori dal perimetro
+dell'esercizio abusivo della professione — gratuito, locale, anonimo, senza rapporto
+continuativo con un cliente identificato, senza compiere alcun atto riservato ai
+commercialisti (visti, asseverazioni, deposito, rappresentanza tributaria). La ricostruzione
+completa è in [`docs/posizionamento-legale.md`](./docs/posizionamento-legale.md).
 
 La differenza con gli strumenti AI esistenti per forfettari: Mastro è **gratuito, aperto,
 tuo, e cita le fonti**. La conoscenza fiscale vive come Markdown versionato in questa repo —
@@ -37,14 +45,22 @@ _I quattro comandi sono già implementati; in fase di verifica/dogfood (vedi [TO
 | `/scadenze` | Calendario delle scadenze (acconti, saldo, INPS, dichiarazione) |
 | `/idoneo` | Controllo idoneità: segnala le possibili cause di esclusione (non afferma mai "sei idoneo") |
 
-### Edizione SRL (in costruzione)
+### Edizione SRL (v2, in costruzione ma già utile)
 | Comando | Cosa fa |
 |---|---|
-| `/srl` | Domande sull'SRL (IRES, IRAP, IVA, deducibilità). v2: risponde solo da fonte verificata, niente invenzioni |
-| `/confronta` | Forfettario vs SRL: quale conviene e quando ha senso passare (confronto orientativo) |
+| `/srl` | Domande sull'SRL: IRES, IRAP (con le aliquote di tutte le regioni 2026), dividendi, compenso amministratore, INPS di soci e amministratori, accantonamenti, incentivi |
+| `/confronta` | Forfettario vs SRL: mostra i **due poli** del prelievo (dividendo vs compenso) invece di un numero unico falsamente preciso |
 
-> Le due edizioni condividono lo stesso core. Forfettario è la v1; la conoscenza fiscale SRL è
-> ancora uno scheletro, quindi `/srl` rifiuta onestamente ciò che non è ancora verificato.
+La conoscenza SRL vive in [`knowledge/2026/srl/`](./knowledge/2026/srl) ed è marcata
+**`status: CITATO`**: ogni cifra ha la sua fonte primaria (Normattiva, istruzioni AdE, banca
+dati MEF, circolari INPS), ma **non ha ancora una seconda lettura** — e i comandi lo dicono in
+ogni risposta. Su ciò che non è ancora scritto (acconti, codici tributo F24, deducibilità
+puntuale di auto/telefonia/rappresentanza, ammortamenti ordinari) `/srl` **rifiuta**
+onestamente invece di inventare. Vedi [TODOS.md](./TODOS.md).
+
+> ⚠️ **Attenzione, SRL ≠ forfettario anche nel metodo**: la SRL è tassata per **competenza**,
+> non per cassa. Dalle sole fatture **non** si ricava l'utile (mancano ammortamenti, rimanenze,
+> ratei, TFR): ogni numero SRL derivato dalle fatture è una stima, e Mastro lo dichiara.
 
 ## Installazione
 Mastro è un plugin per [Claude Code](https://claude.com/claude-code).
@@ -68,14 +84,19 @@ sh tests/calc.test.sh && sh tests/freshness.test.sh   # 25 test, tutti verdi
 
 ## Architettura
 - **Conoscenza** (`knowledge/`): Markdown citato e versionato. `regole.md` = regole trasversali
-  (cita-o-rifiuta, disclaimer, principio di cassa). `2026/` = dati dell'anno.
-- **Calcolo** (`scripts/calc.sh`): calcolatore deterministico in shell puro, niente costanti
-  fiscali hardcoded (le aliquote arrivano dalla conoscenza). Testato in `tests/calc.test.sh`.
+  (cita-o-rifiuta, criterio temporale per regime, livelli di verifica, disclaimer).
+  `2026/` = dati dell'anno; `2026/srl/` = edizione SRL.
+- **Calcolo** (`scripts/`): calcolatori deterministici in shell puro, niente costanti fiscali
+  hardcoded (le aliquote arrivano dalla conoscenza come argomenti). `calc.sh` per il
+  forfettario, `calc-srl.sh` per IRES/IRAP/acconti.
 - **Comandi** (`commands/`): i prompt slash-command che orchestrano conoscenza + calcolo.
+- **Freschezza** (`scripts/freshness.sh`): gate deterministico sul `valid_to` dei file — e un
+  cron settimanale che apre una issue quando la conoscenza scade.
 
 ## Test
 ```sh
 sh tests/calc.test.sh
+sh tests/calc-srl.test.sh
 sh tests/freshness.test.sh
 ```
 

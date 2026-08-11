@@ -36,12 +36,41 @@
 - [x] **CI**: GitHub Actions esegue `calc.test.sh` + `freshness.test.sh` a ogni push/PR.
 
 ## v2 — Edizione SRL
-- [x] **Scheletro avviato**: comandi `/srl` e `/confronta` + `knowledge/2026/srl.md` (solo i
-      fatti stabili: IRES 24%, IRAP ~3,9%, IVA con detrazione, principio di inerenza). Grazie al
-      cita-o-rifiuta, `/srl` è onesto fin da subito su ciò che non è ancora scritto.
-- [ ] **Contenuto fiscale SRL di dettaglio** (da scrivere e verificare): percentuali di
-      deducibilità (auto, telefonia, rappresentanza, vitto/alloggio), ammortamenti, calcolo
-      IRES/IRAP puntuale, regime dividendi, bilancio.
-- [ ] **Calcolatore SRL** dedicato (es. `scripts/calc-srl.sh`) per dare a `/confronta` un numero
-      SRL deterministico invece di una stima qualitativa.
+- [x] **Scheletro avviato**: comandi `/srl` e `/confronta` + conoscenza SRL iniziale.
+- [x] **Conoscenza SRL strutturata** in `knowledge/2026/srl/`: `panoramica`, `ires`, `irap`,
+      `soci`, `deducibilita`, `incentivi`. Introdotto il livello `status: CITATO`
+      (`regole.md` §7): ogni cifra ha la sua fonte primaria, ma manca la seconda lettura →
+      i comandi lo dichiarano nelle risposte.
+- [x] **Calcolatore SRL** `scripts/calc-srl.sh` (IRES, IRAP, perdite art. 84, acconti) con
+      28 test in CI. IRAP presa come input separato: la sua base non si deriva dall'utile.
+- [x] **Corretta la regola trasversale cassa/competenza** (`regole.md` §3): il forfettario è
+      per cassa, l'SRL per competenza, con l'eccezione dei compensi amministratori (cassa
+      allargata al 12 gennaio).
+- [x] **Chiuse le lacune di `deducibilita.md` §4** (2026-08-11): auto (art. 164: 20/70/80/100%),
+      telefonia (art. 102 c. 9: 80%), rappresentanza (art. 108 + DM 19/11/2008: scaglioni
+      1,5/0,6/0,4%, omaggi ≤50€), vitto/alloggio/trasferte (75%, tetti 180,76€/258,23€, **e la
+      tracciabilità obbligatoria dal 2025**: contanti → indeducibilità totale), ammortamenti
+      ordinari (artt. 102-103 + DM 31/12/1988: mobili 12%, EDP 20%, auto 25%; marchi/avviamento
+      1/18 anche ai fini IRES), interessi passivi/ROL (art. 96, 30% del ROL fiscale post-ATAD,
+      riporto ROL limitato a 5 anni). Restano scoperti solo IMU (lato IRES) e acconti/F24.
+- [ ] **Acconti, scadenze e codici tributo F24** di IRES e IRAP: ricerca avviata 2026-08-11,
+      **interrotta per limite di sessione API** (non per assenza di fonti) — da ripetere.
+      ⚠️ I default di `calc-srl.sh` (`--acconto-perc 1.00`, `--acconto-primo-perc 0.40`,
+      `--acconto-soglia 20.66`) sono **valori di lavoro non verificati**: da chiudere su
+      fonte primaria e poi far leggere dalla conoscenza.
+- [ ] **IMU su immobili strumentali**: percentuale di deducibilità ai fini IRES non ancora
+      verificata (nota: ai fini IRAP è indeducibile, quello è già in `irap.md`).
+- [ ] **Adempimenti dichiarativi SRL**: Redditi SC, approvazione e deposito bilancio (XBRL),
+      LIPE, dichiarazione IVA annuale, 770, CU, diritto camerale, vidimazione libri.
+- [ ] **Seconda lettura dei file `CITATO`** per promuoverli a `VERIFICATO` (idealmente con un
+      commercialista). Coda di verifica già annotata dentro ciascun file.
 - [ ] Generazione/trasmissione fattura elettronica via SDI; sync con piattaforme contabili.
+
+## Strategia (vedi `docs/`)
+- [x] Posizionamento deciso (2026-08-06): **intelligence layer + open rules layer**, beachhead
+      SRL, il ledger non lo facciamo. `docs/strategia-opensource.md` +
+      `docs/landscape-2026-08.md` + `docs/awareness-playbook.md`.
+- [x] Sito `mastrofisco.it` (Astro) + deploy GitHub Pages; issue form, PR checklist, cron di
+      freshness, release v0.2.0.
+- [ ] Eseguire il playbook di awareness (marketplace Anthropic, awesome-italia-opensource,
+      openaccountants, italia-corpus, issue OCA).
