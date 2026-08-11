@@ -14,14 +14,22 @@ sul regime, stima le tasse, segnala scadenze ed esclusioni — **citando sempre 
 
 > ⚠️ **Stato: beta (v0.2).** La conoscenza fiscale del forfettario è stata **verificata contro
 > fonti ufficiali** (Agenzia delle Entrate, Normattiva, INPS Circ. 8/2026 e 14/2026) il 2026-06-09;
-> manca il dogfood end-to-end. L'edizione SRL è ancora uno scheletro. Mastro è un aiuto, non
-> sostituisce il commercialista.
+> manca il dogfood end-to-end. L'edizione SRL ha conoscenza citata su tutte le imposte
+> principali (`status: CITATO` — fonte primaria per ogni cifra, seconda lettura non ancora
+> fatta). Mastro è un aiuto, non sostituisce il commercialista.
 
 ## Cos'è (e cosa non è)
 Mastro è uno strumento **personale e di comunità**, trasparente e ispezionabile. Non è un
-SaaS, non invia i tuoi dati da nessuna parte, non emette fatture e **non sostituisce il
-commercialista**: ogni risposta che produce un numero o un giudizio di idoneità lo dice
-esplicitamente.
+SaaS, non invia i tuoi dati da nessuna parte, non emette fatture, non firma né trasmette
+nulla per conto tuo, e **non sostituisce il commercialista**: ogni risposta che produce un
+numero o un giudizio di idoneità lo dice esplicitamente, e non costituisce consulenza fiscale
+personalizzata.
+
+Non è solo un modo di dire: è il motivo per cui Mastro sta fuori dal perimetro
+dell'esercizio abusivo della professione — gratuito, locale, anonimo, senza rapporto
+continuativo con un cliente identificato, senza compiere alcun atto riservato ai
+commercialisti (visti, asseverazioni, deposito, rappresentanza tributaria). La ricostruzione
+completa è in [`docs/posizionamento-legale.md`](./docs/posizionamento-legale.md).
 
 La differenza con gli strumenti AI esistenti per forfettari: Mastro è **gratuito, aperto,
 tuo, e cita le fonti**. La conoscenza fiscale vive come Markdown versionato in questa repo —
