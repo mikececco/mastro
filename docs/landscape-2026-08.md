@@ -253,3 +253,60 @@ il caveat CLA/licenza già segnalato nel playbook).
 **Verdetto**: nessun evento degli ultimi 5 giorni cambia in modo sostanziale la posizione
 competitiva di Mastro. Il posizionamento resta valido: intelligence layer + open rules layer,
 formulato con la precisione sopra.
+
+---
+
+## Aggiornamento 2026-08-11 (II) — validazione della domanda: ICP di accounted.se e l'equivalente italiano
+
+Due ricerche mirate su "chi comprerebbe davvero questo" — non più struttura di mercato, ma
+prove di domanda reale.
+
+### L'ICP di accounted.se è molto più stretto di "titolari di AB svedesi"
+
+Verificato sul loro stesso sito: due segmenti, entrambi tech-adjacent — **startup AI/tech
+in fase VC** (team piccoli, stock option, K10/3:12) e **consulenti IT/tech solo o in team
+piccoli** incorporati come AB. Il tier gratuito è esplicitamente scoped alla ditta
+individuale (enskild firma); **l'AB è il tier a pagamento**, cioè l'upsell. Il messaggio
+dominante ("costruito per agenti AI, non per mouse e tastiera") converte proprio perché
+l'audience si fida già degli strumenti AI — non è un prodotto SME generico che capita a
+essere open-source.
+
+**Prova di domanda per accounted stessa: debole.** "1000+ aziende" è un'affermazione
+auto-dichiarata, mai confermata da terzi. Nessun importo di funding reso pubblico (pur con
+tre backer nominati: STING, Propel Capital, Almi), nessuna copertura stampa, nessuna
+recensione, nessuna testimonianza. L'unico segnale verificabile in modo indipendente sono
+209 stelle GitHub — curiosità degli sviluppatori, non prova di clienti paganti.
+
+### Per l'Italia, la prova di domanda è più forte — grazie a un concorrente, non a Mastro
+
+**Sibill** (fintech milanese): **12 M€ di Serie A nel 2025** guidata da Creandum
+(investitore di Spotify/Klarna), **18,7 M€ raccolti in totale**, **2.600+ clienti PMI/SRL
+paganti**, prodotto di tesoreria/fatturazione/pagamento F24 **con un simulatore fiscale SRL
+incluso**. È la prova più solida trovata in questa ricerca — non ipotetica, capitale reale
+di investitori sofisticati dopo due diligence, per un prodotto che serve lo stesso
+acquirente (titolare di SRL/PMI) con un bisogno di visibilità fiscale/finanziaria
+sovrapponibile.
+
+**Correzione al posizionamento competitivo precedente**: Sibill era stata classificata
+nell'aggiornamento di oggi (I) come "near-miss" — un semplice calcolatore gratuito senza
+citazioni. Sottostimato: è un prodotto finanziario completo e finanziato, di cui il
+simulatore fiscale è solo una funzione. La differenziazione resta valida (Sibill vende
+tesoreria/banking/pagamenti; Mastro non fa mai il ledger, solo intelligence + citazioni),
+ma va nominato come concorrente vero e finanziato nello spazio adiacente, non come
+near-miss leggero.
+
+**Dato mancante**: dimensione del TAM per SRL "tech" specificamente (consulenti/agenzie IT
+incorporati come SRL) — non trovato un incrocio ISTAT settore×dimensione×forma giuridica.
+Il TAM totale SRL Italia è stimato ~2M (estrapolato da dati Unioncamere 2015-2019 + crescita
+2025), ma la fetta "tech" non è quantificata: trattare come ipotesi di lavoro, non come cifra
+verificata.
+
+### Decisione presa: narrow il messaggio, non il prodotto
+
+Coerente col pattern reale di accounted (un motore generale, landing page per segmento
+stretto — `/startups`, `/konsulter`): la conoscenza SRL di Mastro resta generale e serve
+qualunque titolare di SRL. Ciò che si restringe è **a chi si parla per primi e come si
+inquadra il messaggio** — mastrofisco.it ora nomina esplicitamente "SRL da consulente o da
+agenzia tech" nell'hero e mostra un esempio `/confronta` con quel profilo, senza restringere
+i canali di distribuzione già costruiti (che, essendo dentro l'ecosistema Claude Code, sono
+già naturalmente tech-adjacent).
